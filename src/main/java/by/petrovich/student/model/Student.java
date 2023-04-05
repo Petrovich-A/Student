@@ -52,4 +52,12 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName);
     }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

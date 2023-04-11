@@ -1,14 +1,13 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
+    <title>JSP - Hello World</title>
 </head>
 <body>
-
-<p>
-    This is home page. Call <a href="${pageContext.request.contextPath}/student">HelloServlet</a>
-</p>
-
+<h1><%= "Hello World!" %>
+</h1>
+<br/>
+<a href="student">Hello Servlet</a>
 </body>
 </html>

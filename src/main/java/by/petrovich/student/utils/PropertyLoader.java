@@ -1,29 +1,28 @@
 package by.petrovich.student.utils;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-    private static final Properties PROPERTIES = new Properties();
-
-    static {
-        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/properties/PostgreSQL-jdbc-config.properties")) {
-            readProperties(fileInputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private final String PROPERTY_PATH = "src/main/resources/properties/PostgreSQL-jdbc-config.properties";
+    private final Properties PROPERTIES = new Properties();
 
     public String receivePropertyValue(String propertyKey) {
+        readProperties(PROPERTY_PATH);
         return PROPERTIES.getProperty(propertyKey);
     }
 
-    private static void readProperties(FileInputStream fileInputStream) {
+    private void readProperties(String path) {
         try {
-            PROPERTIES.load(fileInputStream);
+            InputStream inputStream = new FileInputStream(path);
+            PROPERTIES.load(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

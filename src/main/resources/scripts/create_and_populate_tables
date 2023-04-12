@@ -1,0 +1,27 @@
+CREATE SCHEMA IF NOT EXISTS students;
+
+create table if not exists students
+(
+    student_id serial
+            primary key,
+    first_name text not null,
+    last_name  text not null
+);
+
+alter table students
+    owner to postgres;
+
+create unique index if not exists students_student_id_uindex
+    on students (student_id);
+
+insert into students (first_name, last_name)
+values ('Wade', 'Williams'),
+       ('Dave', 'Harris'),
+       ('Seth', 'Thomas'),
+       ('Seth', 'Thomas'),
+       ('Ivan', 'Robinson'),
+       ('Riley', 'Walker'),
+       ('Daisy', 'Scott'),
+       ('Deborah', 'Nelson'),
+       ('Stella', 'Morgan'),
+       ('Debra', 'Cooper');

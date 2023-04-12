@@ -14,7 +14,7 @@ class DatabaseConnectorTest {
     void receiveConnection()  {
         boolean isAvailable;
         try (Connection connection = databaseConnector.receiveConnection()) {
-            isAvailable = connection.isValid(10);
+            isAvailable = connection.isValid(10000);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

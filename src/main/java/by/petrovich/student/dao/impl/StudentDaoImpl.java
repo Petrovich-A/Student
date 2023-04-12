@@ -24,9 +24,9 @@ public class StudentDaoImpl implements StudentDao {
         try {
             connection = databaseConnector.receiveConnection();
             preparedStatement = connection.prepareStatement("SELECT student_id, first_name, last_name FROM students;");
-            if (resultSet.isClosed()) {
-                System.err.println("resultSet.isClosed()");
-            }
+//            if (resultSet.isClosed()) {
+//                System.err.println("resultSet.isClosed()");
+//            }
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Student student = new Student();

@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%--<%@ page import="by.petrovich.student.model.Student" %>--%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
+<%--<%@ page import="java.util.ArrayList" %>--%>
+<%--<%@ page import="java.util.List" %>--%>
 <!DOCTYPE html>
 <html>
 <head>

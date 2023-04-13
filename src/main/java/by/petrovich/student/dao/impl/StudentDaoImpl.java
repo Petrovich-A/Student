@@ -1,6 +1,7 @@
 package by.petrovich.student.dao.impl;
 
 import by.petrovich.student.dao.StudentDao;
+import by.petrovich.student.model.City;
 import by.petrovich.student.model.Student;
 import by.petrovich.student.utils.DatabaseConnector;
 
@@ -9,43 +10,56 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StudentDaoImpl implements StudentDao {
-    private final String SQL_SELECT_ALL = "SELECT student_id, first_name, last_name FROM students;";
+    private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
+    private final String FROM = "FROM students";
+    private final String JOIN_CITES = "JOIN cites USING (city_id) ";
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
 
     @Override
     public List<Student> receiveAll() {
-        List<Student> allStudents = new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = databaseConnector.receiveConnection();
-            preparedStatement = connection.prepareStatement("SELECT student_id, first_name, last_name FROM students;");
-//            if (resultSet.isClosed()) {
-//                System.err.println("resultSet.isClosed()");
-//            }
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Student student = new Student();
-                student.setId(resultSet.getInt("student_id"));
-                student.setFirstName(resultSet.getString("first_name"));
-                student.setLastName(resultSet.getString("last_name"));
-                allStudents.add(student);
-            }
-        } catch (Exception e) {
+        List<Student> students = new ArrayList<>();
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            students.add(buildStudent(resultSet));
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                resultSet.close();
-                connection.close();
-                preparedStatement.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
         }
-        return allStudents;
+        return students;
+    }
+
+    @Override
+    public Map<City, List<Student>> receiveAllWithCites() {
+        Map<City, List<Student>> cityListStudent = new HashMap<>();
+        List<Student> students = new ArrayList<>();
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + JOIN_CITES + FROM);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                students.add(buildStudent(resultSet));
+                City city = new City();
+                city.setId(resultSet.getInt("city_id"));
+                city.setName(resultSet.getString("name"));
+                cityListStudent.put(city, students);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cityListStudent;
+    }
+
+    private Student buildStudent(ResultSet resultSet) throws SQLException {
+        Student student = new Student();
+        while (resultSet.next()) {
+            student.setId(resultSet.getInt("student_id"));
+            student.setFirstName(resultSet.getString("first_name"));
+            student.setLastName(resultSet.getString("last_name"));
+        }
+        return student;
     }
 }

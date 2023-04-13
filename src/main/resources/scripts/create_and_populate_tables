@@ -1,0 +1,44 @@
+CREATE SCHEMA IF NOT EXISTS students;
+
+CREATE TABLE IF NOT EXISTS students
+(
+    student_id serial
+            PRIMARY KEY,
+    first_name text NOT NULL,
+    last_name  text NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cites
+(
+    city_id serial
+            PRIMARY KEY,
+    name text NOT NULL
+);
+
+alter table students
+    owner to postgres;
+
+CREATE UNIQUE index IF NOT EXISTS students_student_id_uindex
+    on students (student_id);
+
+INSERT INTO students (first_name, last_name)
+VALUES ('Wade', 'Williams'),
+       ('Dave', 'Harris'),
+       ('Seth', 'Thomas'),
+       ('Seth', 'Thomas'),
+       ('Ivan', 'Robinson'),
+       ('Riley', 'Walker'),
+       ('Daisy', 'Scott'),
+       ('Deborah', 'Nelson'),
+       ('Stella', 'Morgan'),
+       ('Debra', 'Cooper');
+
+INSERT INTO cites (name)
+VALUES ('New York'),
+    ('Los Angeles'),
+    ('Chicago'),
+    ('Houston'),
+    ('Philadelphia'),
+    ('Phoenix'),
+    ('San Diego'),
+    ('Dallas');

@@ -1,29 +1,34 @@
 package by.petrovich.student.utils;
 
-import java.io.FileInputStream;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-    private final String PROPERTY_PATH = "src/main/resources/properties/PostgreSQL-jdbc-config.properties";
-    private final Properties PROPERTIES = new Properties();
+    private final static String PROPERTY_PATH = "properties/PostgreSQL-jdbc-config.properties";
+    private final static Logger LOGGER = LogManager.getLogger();
+    private final static Properties PROPERTIES = new Properties();
 
     public String receivePropertyValue(String propertyKey) {
-        readProperties(PROPERTY_PATH);
+        readProperties();
         return PROPERTIES.getProperty(propertyKey);
     }
 
-    private void readProperties(String path) {
-        try {
-            InputStream inputStream = new FileInputStream(path);
-            PROPERTIES.load(inputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    private void readProperties() {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTY_PATH)) {
+            if (inputStream != null) {
+                PROPERTIES.load(inputStream);
+            } else {
+                LOGGER.log(Level.FATAL, "Property file: \"{}\" does not exist", PROPERTY_PATH);
+                throw new FileNotFoundException("Property file not found");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

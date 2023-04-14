@@ -14,11 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static by.petrovich.student.dao.ColumnName.CITY_ID;
-import static by.petrovich.student.dao.ColumnName.FIRST_NAME;
-import static by.petrovich.student.dao.ColumnName.LAST_NAME;
-import static by.petrovich.student.dao.ColumnName.NAME;
-import static by.petrovich.student.dao.ColumnName.STUDENT_ID;
+import static by.petrovich.student.dao.FieldName.CITY_ID;
+import static by.petrovich.student.dao.FieldName.FIRST_NAME;
+import static by.petrovich.student.dao.FieldName.LAST_NAME;
+import static by.petrovich.student.dao.FieldName.NAME;
+import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 
 public class StudentDaoImpl implements StudentDao {
     private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";

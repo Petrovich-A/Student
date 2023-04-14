@@ -1,6 +1,6 @@
 package by.petrovich.student.dao;
 
-public class ColumnName {
+public class FieldName {
     public static final String CITY_ID = "city_id";
     public static final String NAME = "name";
     public static final String STUDENT_ID = "student_id";

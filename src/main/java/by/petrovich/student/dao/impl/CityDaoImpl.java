@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.petrovich.student.dao.ColumnName.CITY_ID;
-import static by.petrovich.student.dao.ColumnName.NAME;
+import static by.petrovich.student.dao.FieldName.CITY_ID;
+import static by.petrovich.student.dao.FieldName.NAME;
 
 public class CityDaoImpl implements CityDao {
     private final String SELECT_ALL = "SELECT city_id, name ";

@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.petrovich.student.dao.ColumnName.CITY_ID;
+import static by.petrovich.student.dao.ColumnName.NAME;
+
 public class CityDaoImpl implements CityDao {
     private final String SELECT_ALL = "SELECT city_id, name ";
     private final String FROM = "FROM cities";
@@ -32,8 +35,8 @@ public class CityDaoImpl implements CityDao {
     private City buildCity(ResultSet resultSet) throws SQLException {
         City city = new City();
         while (resultSet.next()) {
-            city.setId(resultSet.getInt("city_id"));
-            city.setName(resultSet.getString("name"));
+            city.setId(resultSet.getInt(CITY_ID));
+            city.setName(resultSet.getString(NAME));
         }
         return city;
     }

@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static by.petrovich.student.dao.ColumnName.CITY_ID;
+import static by.petrovich.student.dao.ColumnName.FIRST_NAME;
+import static by.petrovich.student.dao.ColumnName.LAST_NAME;
+import static by.petrovich.student.dao.ColumnName.NAME;
+import static by.petrovich.student.dao.ColumnName.STUDENT_ID;
+
 public class StudentDaoImpl implements StudentDao {
     private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
     private final String FROM = "FROM students";
@@ -43,8 +49,8 @@ public class StudentDaoImpl implements StudentDao {
             while (resultSet.next()) {
                 students.add(buildStudent(resultSet));
                 City city = new City();
-                city.setId(resultSet.getInt("city_id"));
-                city.setName(resultSet.getString("name"));
+                city.setId(resultSet.getInt(CITY_ID));
+                city.setName(resultSet.getString(NAME));
                 cityListStudent.put(city, students);
             }
         } catch (SQLException e) {
@@ -56,9 +62,9 @@ public class StudentDaoImpl implements StudentDao {
     private Student buildStudent(ResultSet resultSet) throws SQLException {
         Student student = new Student();
         while (resultSet.next()) {
-            student.setId(resultSet.getInt("student_id"));
-            student.setFirstName(resultSet.getString("first_name"));
-            student.setLastName(resultSet.getString("last_name"));
+            student.setId(resultSet.getInt(STUDENT_ID));
+            student.setFirstName(resultSet.getString(FIRST_NAME));
+            student.setLastName(resultSet.getString(LAST_NAME));
         }
         return student;
     }

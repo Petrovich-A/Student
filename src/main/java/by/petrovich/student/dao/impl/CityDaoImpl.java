@@ -25,19 +25,19 @@ public class CityDaoImpl implements CityDao {
         try (Connection connection = databaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM);
              ResultSet resultSet = preparedStatement.executeQuery()) {
-            cities.add(buildCity(resultSet));
+            while (resultSet.next()) {
+                cities.add(buildCity(resultSet));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return cities;
     }
 
-    private City buildCity(ResultSet resultSet) throws SQLException {
+    public City buildCity(ResultSet resultSet) throws SQLException {
         City city = new City();
-        while (resultSet.next()) {
-            city.setId(resultSet.getInt(CITY_ID));
-            city.setName(resultSet.getString(NAME));
-        }
+        city.setId(resultSet.getInt(CITY_ID));
+        city.setName(resultSet.getString(NAME));
         return city;
     }
 

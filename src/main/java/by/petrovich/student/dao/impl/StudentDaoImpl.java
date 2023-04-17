@@ -21,6 +21,7 @@ import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 
 public class StudentDaoImpl implements StudentDao {
     private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
+    private final String DELETE = "DELETE ";
     private final String SELECT_ALL_WITH_CITY = "SELECT student_id, first_name, last_name, city_id, name ";
     private final String FROM = "FROM students ";
     private final String WHERE_ID = "WHERE student_id = ?";
@@ -72,6 +73,17 @@ public class StudentDaoImpl implements StudentDao {
             throw new RuntimeException(e);
         }
         return student;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE + FROM + WHERE_ID)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Student buildStudent(ResultSet resultSet) throws SQLException {

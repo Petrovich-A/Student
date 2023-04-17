@@ -12,4 +12,6 @@ public interface StudentDao {
 
     Student readById(int id);
 
+    void deleteById(int id);
+
 }

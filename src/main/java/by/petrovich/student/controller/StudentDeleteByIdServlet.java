@@ -2,7 +2,6 @@ package by.petrovich.student.controller;
 
 import by.petrovich.student.dao.StudentDao;
 import by.petrovich.student.dao.impl.StudentDaoImpl;
-import by.petrovich.student.model.Student;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/studentReadById")
-public class StudentReadByIdServlet extends HttpServlet {
+@WebServlet("/studentDeleteById")
+public class StudentDeleteByIdServlet extends HttpServlet {
     private final static Logger LOGGER = LogManager.getLogger();
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
@@ -35,10 +34,9 @@ public class StudentReadByIdServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("studentId"));
-        Student student = STUDENT_DAO.readById(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentRead.jsp");
-        request.setAttribute("student", student);
-        requestDispatcher.forward(request, response);
+        STUDENT_DAO.deleteById(id);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/student");
+        dispatcher.forward(request, response);
     }
 
     public void destroy() {

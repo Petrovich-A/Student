@@ -10,5 +10,6 @@ public interface StudentDao {
 
     List<StudentWithCity> receiveAllWithCites();
 
+    Student readById(int id);
 
 }

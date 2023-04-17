@@ -21,37 +21,45 @@
     </ul>
 </nav>
 <main>
-    <div class="table">
+    <div>
         <h2>List of students:</h2>
-        <c:choose>
-            <c:when
-                    test="${students.size() == 0 || students.size() == null}">
-                <p>
-                    <c:out value="No students"/>
-                </p>
-                <hr>
-            </c:when>
-            <c:otherwise>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>STUDENT FIRST NAME</th>
-                        <th>STUDENT LAST NAME</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="students" items="${students}">
+        <form action="studentReadById" method="POST">
+            <c:choose>
+                <c:when
+                        test="${students.size() == 0 || students.size() == null}">
+                    <p>
+                        <c:out value="No students"/>
+                    </p>
+                    <hr>
+                </c:when>
+                <c:otherwise>
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <td>${students.getId()}</td>
-                            <td>${students.getFirstName()}</td>
-                            <td>${students.getLastName()}</td>
+                            <th>ID</th>
+                            <th>STUDENT FIRST NAME</th>
+                            <th>STUDENT LAST NAME</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:otherwise>
-        </c:choose>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="student" items="${students}">
+                            <tr>
+                                <td><label>
+                                    <input type="radio" name="studentId" value="${student.getId()}"
+                                           required="required">
+                                </label>${student.getId()}</td>
+                                <td>${student.getFirstName()}</td>
+                                <td>${student.getLastName()}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </c:otherwise>
+            </c:choose>
+            <div class="button">
+                <button type="submit" value="submit">Read</button>
+            </div>
+        </form>
     </div>
 </main>
 <footer>

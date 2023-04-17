@@ -23,6 +23,7 @@ public class StudentDaoImpl implements StudentDao {
     private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
     private final String SELECT_ALL_WITH_CITY = "SELECT student_id, first_name, last_name, city_id, name ";
     private final String FROM = "FROM students ";
+    private final String WHERE_ID = "WHERE student_id = ?";
     private final String JOIN_CITIES = "JOIN cities USING (city_id) ";
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
     private final CityDao cityDao = new CityDaoImpl();
@@ -55,6 +56,22 @@ public class StudentDaoImpl implements StudentDao {
             throw new RuntimeException(e);
         }
         return studentsWithCities;
+    }
+
+    @Override
+    public Student readById(int id) {
+        Student student = new Student();
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + WHERE_ID)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                student = buildStudent(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return student;
     }
 
     private Student buildStudent(ResultSet resultSet) throws SQLException {

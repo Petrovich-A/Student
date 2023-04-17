@@ -75,22 +75,15 @@ table, th, td {
     border: 1px;
     align-items: center;
     width: 70%;
-    table-layout: auto;
     vertical-align: middle;
     text-align: center;
 }
 
-.table{
-    margin-left: auto;
-    margin-right: auto;
+th {
+    background-color: #cbcbcb;
+    height: 70px;
 }
 
 tr:hover {
     background-color: #f5f5f5;
 }
-
-
-th {
-    background-color: #cbcbcb;
-}
-

@@ -23,7 +23,7 @@
 <h1>Hello Student app!</h1>
 <br/>
 <main>
-    <div class="table">
+    <div>
         <h2>List of students:</h2>
         <c:choose>
             <c:when
@@ -34,7 +34,7 @@
                 <hr>
             </c:when>
             <c:otherwise>
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
                         <th>ID</th>

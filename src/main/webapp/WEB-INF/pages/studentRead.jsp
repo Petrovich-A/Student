@@ -7,7 +7,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="CSS/style.css"/>"/>
     <meta charset="UTF-8">
-    <title>JSP - city</title>
+    <title>Student read</title>
 </head>
 <body>
 <nav>
@@ -22,13 +22,12 @@
 </nav>
 <main>
     <div>
-        <h2>List of cities:</h2>
-        <form action="cityReadById" method="POST">
+        <h2>Student info:</h2>
         <c:choose>
             <c:when
-                    test="${cities.size() == 0 || cities.size() == null}">
+                    test="${student == null}">
                 <p>
-                    <c:out value="No cities"/>
+                    <c:out value="No students"/>
                 </p>
                 <hr>
             </c:when>
@@ -36,28 +35,21 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>CITY ID</th>
-                        <th>CITY NAME</th>
+                        <th>ID</th>
+                        <th>STUDENT FIRST NAME</th>
+                        <th>STUDENT LAST NAME</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="city" items="${cities}">
-                        <tr>
-                            <td><label>
-                                <input type="radio" name="cityId" value="${city.getId()}"
-                                       required="required">
-                            </label>${city.getId()}</td>
-                            <td>${city.getName()}</td>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <td>${student.getId()}</td>
+                        <td>${student.getFirstName()}</td>
+                        <td>${student.getLastName()}</td>
+                    </tr>
                     </tbody>
                 </table>
             </c:otherwise>
         </c:choose>
-        <div class="button">
-            <button type="submit" value="submit">Read</button>
-        </div>
-        </form>
     </div>
 </main>
 <footer>

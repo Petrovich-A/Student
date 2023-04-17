@@ -59,9 +59,9 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            <div class="button">
-                <button type="submit" name="action" value="readByIdServlet">Read</button>
-                <button type="submit" name="action" value="deleteByIdServlet">Delete</button>
+            <div>
+                <button class="button" type="submit" name="action" value="readByIdServlet">Read</button>
+                <button class="button" type="submit" name="action" value="deleteByIdServlet">Delete</button>
             </div>
         </form>
     </div>

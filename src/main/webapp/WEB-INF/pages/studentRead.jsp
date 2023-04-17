@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <title>Student read</title>
 </head>
-<body>
 <nav>
     <ul>
         <li class="logo"><span>STUDENT</span> APP</li>
@@ -20,9 +19,11 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
     <div>
         <h2>Student info:</h2>
+        <br>
         <c:choose>
             <c:when
                     test="${student == null}">
@@ -32,22 +33,24 @@
                 <hr>
             </c:when>
             <c:otherwise>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>STUDENT FIRST NAME</th>
-                        <th>STUDENT LAST NAME</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>${student.getId()}</td>
-                        <td>${student.getFirstName()}</td>
-                        <td>${student.getLastName()}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>STUDENT FIRST NAME</th>
+                            <th>STUDENT LAST NAME</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>${student.getId()}</td>
+                            <td>${student.getFirstName()}</td>
+                            <td>${student.getLastName()}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </c:otherwise>
         </c:choose>
     </div>

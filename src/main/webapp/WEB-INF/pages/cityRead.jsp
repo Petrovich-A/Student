@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <title>Read city</title>
 </head>
-<body>
 <nav>
     <ul>
         <li class="logo"><span>STUDENT</span> APP</li>
@@ -21,8 +20,10 @@
     </ul>
 </nav>
 <main>
+    <body>
     <div>
-        <h2>List of cities:</h2>
+        <h2>City</h2>
+        <br>
         <c:choose>
             <c:when
                     test="${city == null}">
@@ -32,26 +33,28 @@
                 <hr>
             </c:when>
             <c:otherwise>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>CITY ID</th>
-                        <th>CITY NAME</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>${city.getId()}</td>
-                        <td>${city.getName()}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>CITY ID</th>
+                            <th>CITY NAME</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>${city.getId()}</td>
+                            <td>${city.getName()}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </c:otherwise>
         </c:choose>
     </div>
+    </body>
 </main>
 <footer>
     <div></div>
 </footer>
-</body>
 </html>

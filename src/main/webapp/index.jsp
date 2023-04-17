@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <title>JSP - Hello student</title>
 </head>
-<body>
 <nav>
     <ul>
         <li class="logo"><span>STUDENT</span> APP</li>
@@ -19,22 +18,22 @@
         </div>
     </ul>
 </nav>
+<body>
 <br/>
 <h1>Hello Student app!</h1>
 <br/>
 <main>
-    <div>
-        <h2>List of students:</h2>
-        <c:choose>
-            <c:when
-                    test="${studentWithCity.size() == 0 || studentWithCity.size() == null}">
-                <p>
-                    <c:out value="No studentWithCity"/>
-                </p>
-                <hr>
-            </c:when>
-            <c:otherwise>
-                <table class="table">
+    <c:choose>
+        <c:when
+                test="${studentWithCity.size() == 0 || studentWithCity.size() == null}">
+            <p>
+                <c:out value="No studentWithCity"/>
+            </p>
+            <hr>
+        </c:when>
+        <c:otherwise>
+            <div class="container">
+                <table>
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -56,9 +55,9 @@
                     </c:forEach>
                     </tbody>
                 </table>
-            </c:otherwise>
-        </c:choose>
-    </div>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </main>
 </body>
 </html>

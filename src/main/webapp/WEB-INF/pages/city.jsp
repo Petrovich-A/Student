@@ -7,9 +7,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="CSS/style.css"/>"/>
     <meta charset="UTF-8">
-    <title>JSP - city</title>
+    <title>Cities JSP</title>
 </head>
-<body>
 <nav>
     <ul>
         <li class="logo"><span>STUDENT</span> APP</li>
@@ -20,48 +19,52 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
     <div>
-        <h2>List of cities:</h2>
+        <h2>Cities list:</h2>
+        <br>
         <form action="cityReadById" method="POST">
-        <c:choose>
-            <c:when
-                    test="${cities.size() == 0 || cities.size() == null}">
-                <p>
-                    <c:out value="No cities"/>
-                </p>
-                <hr>
-            </c:when>
-            <c:otherwise>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>CITY ID</th>
-                        <th>CITY NAME</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="city" items="${cities}">
-                        <tr>
-                            <td><label>
-                                <input type="radio" name="cityId" value="${city.getId()}"
-                                       required="required">
-                            </label>${city.getId()}</td>
-                            <td>${city.getName()}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:otherwise>
-        </c:choose>
-        <div class="button">
-            <button type="submit" value="submit">Read</button>
-        </div>
+            <c:choose>
+                <c:when
+                        test="${cities.size() == 0 || cities.size() == null}">
+                    <p>
+                        <c:out value="No cities"/>
+                    </p>
+                    <hr>
+                </c:when>
+                <c:otherwise>
+                    <div class="container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>CITY ID</th>
+                                <th>CITY NAME</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="city" items="${cities}">
+                                <tr>
+                                    <td><label>
+                                        <input type="radio" name="cityId" value="${city.getId()}"
+                                               required="required">
+                                    </label>${city.getId()}</td>
+                                    <td>${city.getName()}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+            <div class="button">
+                <button type="submit" value="submit">Read</button>
+            </div>
         </form>
     </div>
 </main>
+</body>
 <footer>
     <div></div>
 </footer>
-</body>
 </html>

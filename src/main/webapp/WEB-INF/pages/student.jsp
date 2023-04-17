@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <title>JSP - student</title>
 </head>
-<body>
 <nav>
     <ul>
         <li class="logo"><span>STUDENT</span> APP</li>
@@ -20,10 +19,12 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
     <div>
-        <h2>List of students:</h2>
-        <form action="studentReadById" method="POST">
+        <h2>Students list:</h2>
+        <br>
+        <form action="studentCRUDServlet" method="POST">
             <c:choose>
                 <c:when
                         test="${students.size() == 0 || students.size() == null}">
@@ -33,37 +34,40 @@
                     <hr>
                 </c:when>
                 <c:otherwise>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>STUDENT FIRST NAME</th>
-                            <th>STUDENT LAST NAME</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="student" items="${students}">
+                    <div class="container">
+                        <table>
+                            <thead>
                             <tr>
-                                <td><label>
-                                    <input type="radio" name="studentId" value="${student.getId()}"
-                                           required="required">
-                                </label>${student.getId()}</td>
-                                <td>${student.getFirstName()}</td>
-                                <td>${student.getLastName()}</td>
+                                <th>ID</th>
+                                <th>STUDENT FIRST NAME</th>
+                                <th>STUDENT LAST NAME</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="student" items="${students}">
+                                <tr>
+                                    <td><label>
+                                        <input type="radio" name="studentId" value="${student.getId()}"
+                                               required="required">
+                                    </label>${student.getId()}</td>
+                                    <td>${student.getFirstName()}</td>
+                                    <td>${student.getLastName()}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </c:otherwise>
             </c:choose>
             <div class="button">
-                <button type="submit" value="submit">Read</button>
+                <button type="submit" name="action" value="readByIdServlet">Read</button>
+                <button type="submit" name="action" value="deleteByIdServlet">Delete</button>
             </div>
         </form>
     </div>
 </main>
+</body>
 <footer>
     <div></div>
 </footer>
-</body>
 </html>

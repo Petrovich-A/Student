@@ -1,44 +1,50 @@
 CREATE SCHEMA IF NOT EXISTS students;
 
-CREATE TABLE IF NOT EXISTS students
+CREATE TABLE IF NOT EXISTS cities
 (
-    student_id serial
-            PRIMARY KEY,
-    first_name text NOT NULL,
-    last_name  text NOT NULL
+    city_id SERIAL,
+    name    text NOT NULL,
+    PRIMARY KEY (city_id),
+    UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS cites
-(
-    city_id serial
-            PRIMARY KEY,
-    name text NOT NULL
-);
-
-alter table students
-    owner to postgres;
-
-CREATE UNIQUE index IF NOT EXISTS students_student_id_uindex
-    on students (student_id);
-
-INSERT INTO students (first_name, last_name)
-VALUES ('Wade', 'Williams'),
-       ('Dave', 'Harris'),
-       ('Seth', 'Thomas'),
-       ('Seth', 'Thomas'),
-       ('Ivan', 'Robinson'),
-       ('Riley', 'Walker'),
-       ('Daisy', 'Scott'),
-       ('Deborah', 'Nelson'),
-       ('Stella', 'Morgan'),
-       ('Debra', 'Cooper');
-
-INSERT INTO cites (name)
+INSERT INTO cities (name)
 VALUES ('New York'),
-    ('Los Angeles'),
-    ('Chicago'),
-    ('Houston'),
-    ('Philadelphia'),
-    ('Phoenix'),
-    ('San Diego'),
-    ('Dallas');
+       ('Los Angeles'),
+       ('Chicago'),
+       ('Houston'),
+       ('Philadelphia'),
+       ('Phoenix'),
+       ('San Diego'),
+       ('Dallas');
+
+CREATE SCHEMA IF NOT EXISTS students;
+
+create table if not exists students
+(
+    student_id SERIAL,
+    first_name VARCHAR(40) NOT NULL,
+    last_name  VARCHAR(40) NOT NULL,
+    city_id    int         NOT NULL,
+    PRIMARY KEY (student_id),
+    FOREIGN KEY (student_id) REFERENCES students (student_id),
+    FOREIGN KEY (city_id) REFERENCES cities (city_id)
+);
+
+insert into students (first_name, last_name, city_id)
+values ('Wade', 'Williams', 3),
+       ('Dave', 'Harris', 4),
+       ('Seth', 'Thomas', 2),
+       ('Seth', 'Thomas', 1),
+       ('Ivan', 'Robinson', 7),
+       ('Riley', 'Walker', 8),
+       ('Daisy', 'Scott', 4),
+       ('Deborah', 'Nelson', 1),
+       ('Stella', 'Morgan', 6),
+       ('Debra', 'Cooper', 1);
+
+ALTER TABLE students
+    OWNER TO postgres;
+
+ALTER TABLE cities
+    OWNER TO postgres;

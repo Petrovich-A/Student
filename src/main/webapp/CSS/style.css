@@ -55,33 +55,36 @@ nav ul div.items a:hover {
 }
 
 body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #6c6c6c;
     margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #6c6c6c;
 }
 
-main {
-    display: flex;
+h1 {
+    text-align: left;
 }
 
 h2 {
-    font-size: 1.7em;
-    text-align: justify;
-}
-
-table, th, td {
-    border: 1px;
-    align-items: center;
-    width: 70%;
-    vertical-align: middle;
     text-align: center;
+    font-size: 1.7em;
 }
 
-th {
-    background-color: #cbcbcb;
-    height: 70px;
+div.container {
+    margin-top: 10px;
+    width: 98%;
+}
+
+table {
+    margin-top: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+tr, td {
+    height: 40px;
 }
 
 tr:hover {

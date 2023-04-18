@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT</span> APP</li>
+        <li class="logo"><span>STUDENT &#128102 </span> APP</li>
         <div class="items">
             <li><a href="main">MAIN</a></li>
             <li><a href="student">STUDENTS</a></li>
@@ -24,7 +24,7 @@
     <div>
         <h2>Students list:</h2>
         <br>
-        <form action="studentCRUDServlet" method="POST">
+        <form action="studentCrudServlet" method="POST">
             <c:choose>
                 <c:when
                         test="${students.size() == 0 || students.size() == null}">

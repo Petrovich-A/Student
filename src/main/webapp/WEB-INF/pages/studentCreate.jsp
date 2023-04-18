@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT</span> APP</li>
+        <li class="logo"><span>STUDENT</span> APP &#128102 </li>
         <div class="items">
             <li><a href="main">MAIN</a></li>
             <li><a href="student">STUDENTS</a></li>
@@ -28,14 +28,25 @@
             <div class="container">
                 <table>
                     <tr>
-                        <td>STUDENT FIRST NAME: </td>
+                        <td>STUDENT FIRST NAME:</td>
                         <td><input type="text" name="firstName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
                                    title="Input student first name"/></td>
                     </tr>
                     <tr>
-                        <td>STUDENT LAST NAME: </td>
+                        <td>STUDENT LAST NAME:</td>
                         <td><input type="text" name="lastName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
                                    title="Input student last name"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><select name='CITY'>
+                            <c:forEach items="${cities}" var="city">
+                                <option value="${city.getName()}">
+                                        ${city.getName()}
+                                </option>
+                            </c:forEach>
+                        </select>
+                        </td>
                     </tr>
                 </table>
             </div>

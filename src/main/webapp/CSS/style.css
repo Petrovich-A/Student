@@ -11,7 +11,7 @@ nav {
     display: flex;
     vertical-align: middle;
     padding: 10px 20px 10px 20px;
-    border-bottom: 1px solid #444343;
+    border-bottom: 2px solid #a3a3a3;
     border-left: none;
     border-right: none;
 }
@@ -85,6 +85,15 @@ table {
 
 tr, td {
     height: 40px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    border-bottom: 2px solid #a3a3a3;
+    border-top: 2px solid #a3a3a3;
 }
 
 tr:hover {

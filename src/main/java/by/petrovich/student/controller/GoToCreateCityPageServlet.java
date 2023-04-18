@@ -1,9 +1,5 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.dao.CityDao;
-import by.petrovich.student.dao.impl.CityDaoImpl;
-import by.petrovich.student.model.City;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/cityReadById")
-public class CityReadByIdServlet extends HttpServlet {
-    private static final CityDao CITY_DAO = new CityDaoImpl();
-
+@WebServlet("/goToCreateCityPage")
+public class GoToCreateCityPageServlet extends HttpServlet {
     public void init() {
     }
 
@@ -31,10 +25,7 @@ public class CityReadByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("cityId"));
-        City city = CITY_DAO.readById(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityRead.jsp");
-        request.setAttribute("city", city);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityCreate.jsp");
         requestDispatcher.forward(request, response);
     }
 

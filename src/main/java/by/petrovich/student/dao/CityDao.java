@@ -8,5 +8,8 @@ public interface CityDao {
     List<City> receiveAll();
 
     City readById(int id);
+    void deleteById(int id);
+
+    void create(City city);
 
 }

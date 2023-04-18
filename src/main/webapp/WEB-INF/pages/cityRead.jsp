@@ -25,8 +25,7 @@
         <h2>City</h2>
         <br>
         <c:choose>
-            <c:when
-                    test="${city == null}">
+            <c:when test="${city == null}">
                 <p>
                     <c:out value="No cities"/>
                 </p>

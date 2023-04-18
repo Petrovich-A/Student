@@ -16,8 +16,9 @@ import static by.petrovich.student.dao.FieldName.NAME;
 
 public class CityDaoImpl implements CityDao {
     private final String SELECT_ALL = "SELECT city_id, name ";
-
+    private final String INSERT = "INSERT INTO cities (name) VALUES (?)";
     private final String FROM = "FROM cities ";
+    private final String DELETE = "DELETE ";
 
     private final String WHERE_ID = "WHERE city_id = ?";
 
@@ -52,6 +53,28 @@ public class CityDaoImpl implements CityDao {
             throw new RuntimeException(e);
         }
         return city;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE + FROM + WHERE_ID)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void create(City city) {
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
+            preparedStatement.setString(1, city.getName());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private City buildCity(ResultSet resultSet) throws SQLException {

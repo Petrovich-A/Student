@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/cityReadById")
-public class CityReadByIdServlet extends HttpServlet {
+@WebServlet("/cityCreate")
+public class CityCreateServlet extends HttpServlet {
     private static final CityDao CITY_DAO = new CityDaoImpl();
 
     public void init() {
@@ -31,10 +31,10 @@ public class CityReadByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("cityId"));
-        City city = CITY_DAO.readById(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityRead.jsp");
-        request.setAttribute("city", city);
+        String name = request.getParameter("name");
+        City city = new City(name);
+        CITY_DAO.create(city);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/city");
         requestDispatcher.forward(request, response);
     }
 

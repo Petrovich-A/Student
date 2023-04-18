@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT &#128102 </span> APP</li>
+        <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
             <li><a href="main">MAIN</a></li>
             <li><a href="student">STUDENTS</a></li>
@@ -54,6 +54,10 @@
     </body>
 </main>
 <footer>
-    <div></div>
+    <p>Author: Alexandr Petrovich
+        <br>
+        <a href="https://github.com/Petrovich-A/Student">github: Student App</a>
+    </p>
 </footer>
+</body>
 </html>

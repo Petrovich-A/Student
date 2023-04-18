@@ -58,6 +58,10 @@
     </body>
 </main>
 <footer>
-    <div></div>
+    <p>Author: Alexandr Petrovich
+        <br>
+        <a href="https://github.com/Petrovich-A/Student">github: Student App</a>
+    </p>
 </footer>
+</body>
 </html>

@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<StudentWithCityDto> studentWithCityDto = STUDENT_DAO.receiveAllWithCites();
         request.setAttribute("studentWithCityDto", studentWithCityDto);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/main.jsp");
         requestDispatcher.forward(request, response);
     }
 

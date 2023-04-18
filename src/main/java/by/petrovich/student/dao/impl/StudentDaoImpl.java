@@ -2,7 +2,8 @@ package by.petrovich.student.dao.impl;
 
 import by.petrovich.student.dao.CityDao;
 import by.petrovich.student.dao.StudentDao;
-import by.petrovich.student.dto.StudentWithCity;
+import by.petrovich.student.dto.StudentDto;
+import by.petrovich.student.dto.StudentWithCityDto;
 import by.petrovich.student.model.Student;
 import by.petrovich.student.utils.DatabaseConnector;
 
@@ -22,6 +23,7 @@ import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 public class StudentDaoImpl implements StudentDao {
     private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
     private final String DELETE = "DELETE ";
+    private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
     private final String SELECT_ALL_WITH_CITY = "SELECT student_id, first_name, last_name, city_id, name ";
     private final String FROM = "FROM students ";
     private final String WHERE_ID = "WHERE student_id = ?";
@@ -45,8 +47,8 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<StudentWithCity> receiveAllWithCites() {
-        List<StudentWithCity> studentsWithCities = new ArrayList<>();
+    public List<StudentWithCityDto> receiveAllWithCites() {
+        List<StudentWithCityDto> studentsWithCities = new ArrayList<>();
         try (Connection connection = databaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_WITH_CITY + FROM + JOIN_CITIES);
              ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -86,6 +88,19 @@ public class StudentDaoImpl implements StudentDao {
         }
     }
 
+    @Override
+    public void create(StudentDto studentDto) {
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
+            preparedStatement.setString(1, studentDto.getFirstName());
+            preparedStatement.setString(2, studentDto.getLastName());
+            preparedStatement.setInt(3, 13);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Student buildStudent(ResultSet resultSet) throws SQLException {
         Student student = new Student();
         student.setId(resultSet.getInt(STUDENT_ID));
@@ -94,13 +109,13 @@ public class StudentDaoImpl implements StudentDao {
         return student;
     }
 
-    private StudentWithCity buildStudentWithCity(ResultSet resultSet) throws SQLException {
-        StudentWithCity studentWithCity = new StudentWithCity();
-        studentWithCity.setStudentId(resultSet.getInt(STUDENT_ID));
-        studentWithCity.setStudentFirstName(resultSet.getString(FIRST_NAME));
-        studentWithCity.setStudentLastName(resultSet.getString(LAST_NAME));
-        studentWithCity.setCityId(resultSet.getInt(CITY_ID));
-        studentWithCity.setCityName(resultSet.getString(NAME));
-        return studentWithCity;
+    private StudentWithCityDto buildStudentWithCity(ResultSet resultSet) throws SQLException {
+        StudentWithCityDto studentWithCityDto = new StudentWithCityDto();
+        studentWithCityDto.setStudentId(resultSet.getInt(STUDENT_ID));
+        studentWithCityDto.setStudentFirstName(resultSet.getString(FIRST_NAME));
+        studentWithCityDto.setStudentLastName(resultSet.getString(LAST_NAME));
+        studentWithCityDto.setCityId(resultSet.getInt(CITY_ID));
+        studentWithCityDto.setCityName(resultSet.getString(NAME));
+        return studentWithCityDto;
     }
 }

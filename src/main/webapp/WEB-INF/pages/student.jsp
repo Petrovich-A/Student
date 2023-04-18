@@ -60,8 +60,10 @@
                 </c:otherwise>
             </c:choose>
             <div>
-                <button class="button" type="submit" name="action" value="readByIdServlet">Read</button>
-                <button class="button" type="submit" name="action" value="deleteByIdServlet">Delete</button>
+                <button class="button" type="submit" name="action" value="goToCreatePage">Create</button>
+                <button class="button" type="submit" name="action" value="readById">Read</button>
+                <button class="button" type="submit" name="action" value="update">Update</button>
+                <button class="button" type="submit" name="action" value="deleteById">Delete</button>
             </div>
         </form>
     </div>

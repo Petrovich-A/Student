@@ -2,7 +2,7 @@ package by.petrovich.student.controller;
 
 import by.petrovich.student.dao.StudentDao;
 import by.petrovich.student.dao.impl.StudentDaoImpl;
-import by.petrovich.student.dto.StudentWithCityDto;
+import by.petrovich.student.dto.StudentDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/studentCreate")
+public class StudentCreateServlet extends HttpServlet {
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     public void init() {
@@ -32,13 +31,19 @@ public class MainServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<StudentWithCityDto> studentWithCityDto = STUDENT_DAO.receiveAllWithCites();
-        request.setAttribute("studentWithCityDto", studentWithCityDto);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
-        requestDispatcher.forward(request, response);
+        STUDENT_DAO.create(buildStudentDto(request));
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/student");
+        dispatcher.forward(request, response);
     }
 
     public void destroy() {
+    }
+
+    private StudentDto buildStudentDto(HttpServletRequest request) {
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        StudentDto studentDto = new StudentDto(firstName, lastName);
+        return studentDto;
     }
 
 }

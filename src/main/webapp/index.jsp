@@ -25,9 +25,9 @@
 <main>
     <c:choose>
         <c:when
-                test="${studentWithCity.size() == 0 || studentWithCity.size() == null}">
+                test="${studentWithCityDto.size() == 0 || studentWithCityDto.size() == null}">
             <p>
-                <c:out value="No studentWithCity"/>
+                <c:out value="No studentWithCityDto"/>
             </p>
             <hr>
         </c:when>
@@ -44,13 +44,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="studentWithCity" items="${studentWithCity}">
+                    <c:forEach var="studentWithCityDto" items="${studentWithCityDto}">
                         <tr>
-                            <td>${studentWithCity.getStudentId()}</td>
-                            <td>${studentWithCity.getStudentFirstName()}</td>
-                            <td>${studentWithCity.getStudentLastName()}</td>
-                            <td>${studentWithCity.getCityId()}</td>
-                            <td>${studentWithCity.getCityName()}</td>
+                            <td>${studentWithCityDto.getStudentId()}</td>
+                            <td>${studentWithCityDto.getStudentFirstName()}</td>
+                            <td>${studentWithCityDto.getStudentLastName()}</td>
+                            <td>${studentWithCityDto.getCityId()}</td>
+                            <td>${studentWithCityDto.getCityName()}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

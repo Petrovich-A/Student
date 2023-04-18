@@ -2,7 +2,7 @@ package by.petrovich.student.dto;
 
 import java.util.Objects;
 
-public class StudentWithCity {
+public class StudentWithCityDto {
     private int studentId;
     private String studentFirstName;
     private String studentLastName;
@@ -10,10 +10,10 @@ public class StudentWithCity {
     private String cityName;
 
 
-    public StudentWithCity() {
+    public StudentWithCityDto() {
     }
 
-    public StudentWithCity(int studentId, String studentFirstName, String studentLastName, int cityId, String cityName) {
+    public StudentWithCityDto(int studentId, String studentFirstName, String studentLastName, int cityId, String cityName) {
         this.studentId = studentId;
         this.studentFirstName = studentFirstName;
         this.studentLastName = studentLastName;
@@ -65,7 +65,7 @@ public class StudentWithCity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StudentWithCity that = (StudentWithCity) o;
+        StudentWithCityDto that = (StudentWithCityDto) o;
         return studentId == that.studentId && cityId == that.cityId && Objects.equals(studentFirstName, that.studentFirstName) && Objects.equals(studentLastName, that.studentLastName) && Objects.equals(cityName, that.cityName);
     }
 

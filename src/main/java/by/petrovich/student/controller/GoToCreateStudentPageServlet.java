@@ -1,8 +1,8 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.dao.StudentDao;
-import by.petrovich.student.dao.impl.StudentDaoImpl;
-import by.petrovich.student.dto.StudentWithCityDto;
+import by.petrovich.student.dao.CityDao;
+import by.petrovich.student.dao.impl.CityDaoImpl;
+import by.petrovich.student.model.City;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
+@WebServlet("/goToCreateStudentPage")
+public class GoToCreateStudentPageServlet extends HttpServlet {
+    private static final CityDao CITY_DAO = new CityDaoImpl();
 
     public void init() {
     }
@@ -32,9 +32,9 @@ public class MainServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<StudentWithCityDto> studentWithCityDto = STUDENT_DAO.receiveAllWithCites();
-        request.setAttribute("studentWithCityDto", studentWithCityDto);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentCreate.jsp");
+        List<City> cities = CITY_DAO.receiveAll();
+        request.setAttribute("cities", cities);
         requestDispatcher.forward(request, response);
     }
 

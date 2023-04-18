@@ -1,7 +1,5 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.dao.StudentDao;
-import by.petrovich.student.dao.impl.StudentDaoImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +16,6 @@ import java.io.IOException;
 @WebServlet("/studentCRUDServlet")
 public class StudentCRUDServlet extends HttpServlet {
     private final static Logger LOGGER = LogManager.getLogger();
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     public void init() {
     }
@@ -38,13 +35,25 @@ public class StudentCRUDServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("studentId"));
         String action = request.getParameter("action");
         RequestDispatcher dispatcher;
-        if (request.getParameter("studentId") != null) {
-            if ("readByIdServlet".equals(action)) {
+        if (request.getParameter("studentId") != null || request.getParameter("action") != null) {
+            if ("readById".equals(action)) {
                 dispatcher = getServletContext().getRequestDispatcher("/studentReadById");
                 dispatcher.forward(request, response);
             }
-            if ("deleteByIdServlet".equals(action)) {
+            if ("create".equals(action)) {
+                dispatcher = getServletContext().getRequestDispatcher("/studentCreate");
+                dispatcher.forward(request, response);
+            }
+            if ("deleteById".equals(action)) {
                 dispatcher = getServletContext().getRequestDispatcher("/studentDeleteById");
+                dispatcher.forward(request, response);
+            }
+            if ("goToCreatePage".equals(action)) {
+                dispatcher = getServletContext().getRequestDispatcher("/goToCreateStudentPage");
+                dispatcher.forward(request, response);
+            }
+            if ("update".equals(action)) {
+                dispatcher = getServletContext().getRequestDispatcher("/studentUpdateById");
                 dispatcher.forward(request, response);
             }
         } else {

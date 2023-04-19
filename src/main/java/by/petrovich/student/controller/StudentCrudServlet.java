@@ -55,10 +55,6 @@ public class StudentCrudServlet extends HttpServlet {
             dispatcher = getServletContext().getRequestDispatcher("/studentDeleteById");
             dispatcher.forward(request, response);
         }
-        if ("goToCreatePage".equals(action)) {
-            dispatcher = getServletContext().getRequestDispatcher("/goToCreateStudentPage");
-            dispatcher.forward(request, response);
-        }
         if ("update".equals(action)) {
             dispatcher = getServletContext().getRequestDispatcher("/studentUpdateById");
             dispatcher.forward(request, response);

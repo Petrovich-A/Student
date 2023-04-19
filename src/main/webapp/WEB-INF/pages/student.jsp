@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT</span> APP &#128102 </li>
+        <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
             <li><a href="main">MAIN</a></li>
             <li><a href="student">STUDENTS</a></li>
@@ -59,12 +59,12 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            <div>
-                <button class="button" type="submit" name="action" value="goToCreatePage">Create</button>
-                <button class="button" type="submit" name="action" value="readById">Read</button>
-                <button class="button" type="submit" name="action" value="update">Update</button>
-                <button class="button" type="submit" name="action" value="deleteById">Delete</button>
-            </div>
+            <button class="button" type="submit" name="action" value="readById">Read</button>
+            <button class="button" type="submit" name="action" value="update">Update</button>
+            <button class="button" type="submit" name="action" value="deleteById">Delete</button>
+        </form>
+        <form action="goToCreateStudentPage" method="POST">
+            <button class="button" type="submit">Create</button>
         </form>
     </div>
 </main>

@@ -35,7 +35,7 @@
                 </table>
             </div>
             <div>
-                <button class="button" type="submit" name="action" value="create">Submit</button>
+                <button class="button" type="submit">Submit</button>
             </div>
         </form>
     </div>

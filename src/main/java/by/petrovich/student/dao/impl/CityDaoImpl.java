@@ -1,6 +1,7 @@
 package by.petrovich.student.dao.impl;
 
 import by.petrovich.student.dao.CityDao;
+import by.petrovich.student.dto.CityUpdateDto;
 import by.petrovich.student.model.City;
 import by.petrovich.student.utils.DatabaseConnector;
 
@@ -19,7 +20,8 @@ public class CityDaoImpl implements CityDao {
     private final String INSERT = "INSERT INTO cities (name) VALUES (?)";
     private final String FROM = "FROM cities ";
     private final String DELETE = "DELETE ";
-
+    private final String UPDATE = "UPDATE cities SET name = ? ";
+    private final String WHERE_NAME = "WHERE name = ?";
     private final String WHERE_ID = "WHERE city_id = ?";
 
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
@@ -64,6 +66,20 @@ public class CityDaoImpl implements CityDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void updateById(CityUpdateDto cityUpdateDto) {
+        try (Connection connection = databaseConnector.receiveConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE + WHERE_ID)) {
+            preparedStatement.setString(1, cityUpdateDto.getName());
+            preparedStatement.setInt(2, cityUpdateDto.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @Override

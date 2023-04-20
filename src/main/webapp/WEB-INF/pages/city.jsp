@@ -46,10 +46,12 @@
                             <c:forEach var="city" items="${cities}">
                                 <tr>
                                     <td><label>
-                                        <input type="radio" name="selectedCityName" value="${city.getId()}"
+                                        <input type=radio name="cityId" value="${city.getId()}"
                                                required="required">
                                     </label>${city.getId()}</td>
-                                    <td>${city.getName()}</td>
+                                    <td><label>
+                                        <input type="hidden" name="cityName" value="${city.getName()}">
+                                    </label>${city.getName()}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -58,7 +60,7 @@
                 </c:otherwise>
             </c:choose>
             <button class="button" type="submit" name="action" value="readById">Read</button>
-            <button class="button" type="submit" name="action" value="update">Update</button>
+            <button class="button" type="submit" name="action" value="goToUpdateCityPage">Update</button>
             <button class="button" type="submit" name="action" value="deleteById">Delete</button>
         </form>
         <form action="goToCreateCityPage" method="POST">

@@ -53,8 +53,8 @@ public class CityCrudServlet extends HttpServlet {
             requestDispatcher = request.getRequestDispatcher("/cityReadById");
             requestDispatcher.forward(request, response);
         }
-        if ("update".equals(action)) {
-            requestDispatcher = request.getRequestDispatcher("/cityUpdateById");
+        if ("goToUpdateCityPage".equals(action)) {
+            requestDispatcher = request.getRequestDispatcher("/goToUpdateCityPage");
             requestDispatcher.forward(request, response);
         }
         if ("deleteById".equals(action)) {

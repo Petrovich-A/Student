@@ -1,25 +1,19 @@
 package by.petrovich.student.dto;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class StudentDto {
     private String firstName;
     private String lastName;
-    private String cityName;
-    private int cityId;
+    private Integer cityId;
 
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName) {
+    public StudentDto(String firstName, String lastName, int cityId) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public StudentDto(String firstName, String lastName, String cityName, int cityId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cityName = cityName;
         this.cityId = cityId;
     }
 
@@ -39,14 +33,6 @@ public class StudentDto {
         this.lastName = lastName;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
     public int getCityId() {
         return cityId;
     }
@@ -60,21 +46,20 @@ public class StudentDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDto that = (StudentDto) o;
-        return cityId == that.cityId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(cityName, that.cityName);
+        return cityId == that.cityId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, cityName, cityId);
+        return Objects.hash(firstName, lastName, cityId);
     }
 
     @Override
     public String toString() {
-        return "StudentDto{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", cityName='" + cityName + '\'' +
-                ", cityId=" + cityId +
-                '}';
+        return new StringJoiner(", ", StudentDto.class.getSimpleName() + "[", "]")
+                .add("firstName='" + firstName + "'")
+                .add("lastName='" + lastName + "'")
+                .add("cityId=" + cityId)
+                .toString();
     }
 }

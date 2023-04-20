@@ -39,10 +39,9 @@
                     </tr>
                     <tr>
                         <td>CITY:</td>
-                        <td><select name='selectedCityName'>
+                        <td><select name='cityId'>
                             <c:forEach items="${cities}" var="city">
-                                <option value="${city.getName()}">
-                                        ${city.getName()}
+                                <option value="${city.getId()}">${city.getName()}
                                 </option>
                             </c:forEach>
                         </select>

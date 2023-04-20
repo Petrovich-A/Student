@@ -46,7 +46,7 @@
                             <c:forEach var="city" items="${cities}">
                                 <tr>
                                     <td><label>
-                                        <input type="radio" name="cityId" value="${city.getId()}"
+                                        <input type="radio" name="selectedCityName" value="${city.getId()}"
                                                required="required">
                                     </label>${city.getId()}</td>
                                     <td>${city.getName()}</td>

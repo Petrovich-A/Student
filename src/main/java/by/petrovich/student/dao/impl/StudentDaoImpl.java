@@ -94,7 +94,7 @@ public class StudentDaoImpl implements StudentDao {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
             preparedStatement.setString(1, studentDto.getFirstName());
             preparedStatement.setString(2, studentDto.getLastName());
-            preparedStatement.setInt(3, 13);
+            preparedStatement.setInt(3, studentDto.getCityId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -16,6 +16,13 @@ public class StudentDto {
         this.lastName = lastName;
     }
 
+    public StudentDto(String firstName, String lastName, String cityName, int cityId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cityName = cityName;
+        this.cityId = cityId;
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT</span> APP &#128102 </li>
+        <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
             <li><a href="main">MAIN</a></li>
             <li><a href="student">STUDENTS</a></li>
@@ -38,8 +38,8 @@
                                    title="Input student last name"/></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td><select name='CITY'>
+                        <td>CITY:</td>
+                        <td><select name='selectedCityName'>
                             <c:forEach items="${cities}" var="city">
                                 <option value="${city.getName()}">
                                         ${city.getName()}

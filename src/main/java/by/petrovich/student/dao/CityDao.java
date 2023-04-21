@@ -1,6 +1,6 @@
 package by.petrovich.student.dao;
 
-import by.petrovich.student.dto.CityUpdateDto;
+import by.petrovich.student.dto.CityDto;
 import by.petrovich.student.model.City;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface CityDao {
 
     void deleteById(int id);
 
-    void updateById(CityUpdateDto cityUpdateDto);
+    void updateById(CityDto cityDto);
 
     void create(City city);
 

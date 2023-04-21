@@ -31,8 +31,8 @@ public class StudentReadByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("studentId"));
-        Student student = STUDENT_DAO.readById(id);
+        int studentId = Integer.parseInt(request.getParameter("studentId"));
+        Student student = STUDENT_DAO.readById(studentId);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentRead.jsp");
         request.setAttribute("student", student);
         requestDispatcher.forward(request, response);

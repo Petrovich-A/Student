@@ -1,6 +1,6 @@
 package by.petrovich.student.dto;
 
-public class CityUpdateDto {
+public class CityDto {
     private int id;
     private String name;
 

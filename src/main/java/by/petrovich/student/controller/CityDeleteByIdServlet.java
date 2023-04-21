@@ -32,7 +32,7 @@ public class CityDeleteByIdServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("cityId"));
         CITY_DAO.deleteById(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/city");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/goToCityPage");
         requestDispatcher.forward(request, response);
     }
 

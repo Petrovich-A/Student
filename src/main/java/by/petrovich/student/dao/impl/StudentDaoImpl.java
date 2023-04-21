@@ -3,7 +3,7 @@ package by.petrovich.student.dao.impl;
 import by.petrovich.student.dao.CityDao;
 import by.petrovich.student.dao.StudentDao;
 import by.petrovich.student.dto.StudentDto;
-import by.petrovich.student.dto.StudentWithCityDto;
+import by.petrovich.student.model.City;
 import by.petrovich.student.model.Student;
 import by.petrovich.student.utils.DatabaseConnector;
 
@@ -15,19 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static by.petrovich.student.dao.FieldName.CITY_ID;
-import static by.petrovich.student.dao.FieldName.FIRST_NAME;
-import static by.petrovich.student.dao.FieldName.LAST_NAME;
-import static by.petrovich.student.dao.FieldName.NAME;
+import static by.petrovich.student.dao.FieldName.CITY_NAME;
+import static by.petrovich.student.dao.FieldName.STUDENT_FIRST_NAME;
 import static by.petrovich.student.dao.FieldName.STUDENT_ID;
+import static by.petrovich.student.dao.FieldName.STUDENT_LAST_NAME;
 
 public class StudentDaoImpl implements StudentDao {
-    private final String SELECT_ALL = "SELECT student_id, first_name, last_name ";
+    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name ";
+    private final String JOIN_CITY = "JOIN cities USING (city_id) ";
     private final String DELETE = "DELETE ";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
-    private final String SELECT_ALL_WITH_CITY = "SELECT student_id, first_name, last_name, city_id, name ";
     private final String FROM = "FROM students ";
     private final String WHERE_ID = "WHERE student_id = ?";
-    private final String JOIN_CITIES = "JOIN cities USING (city_id) ";
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
     private final CityDao cityDao = new CityDaoImpl();
 
@@ -35,7 +34,7 @@ public class StudentDaoImpl implements StudentDao {
     public List<Student> receiveAll() {
         List<Student> students = new ArrayList<>();
         try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM);
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + JOIN_CITY);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 students.add(buildStudent(resultSet));
@@ -47,25 +46,10 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<StudentWithCityDto> receiveAllWithCites() {
-        List<StudentWithCityDto> studentsWithCities = new ArrayList<>();
-        try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_WITH_CITY + FROM + JOIN_CITIES);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                studentsWithCities.add(buildStudentWithCity(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return studentsWithCities;
-    }
-
-    @Override
     public Student readById(int id) {
-        Student student = new Student();
+        Student student = null;
         try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + WHERE_ID)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + JOIN_CITY + WHERE_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -92,8 +76,8 @@ public class StudentDaoImpl implements StudentDao {
     public void create(StudentDto studentDto) {
         try (Connection connection = databaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
-            preparedStatement.setString(1, studentDto.getFirstName());
-            preparedStatement.setString(2, studentDto.getLastName());
+            preparedStatement.setString(1, studentDto.getStudentFirstName());
+            preparedStatement.setString(2, studentDto.getStudentLastName());
             preparedStatement.setInt(3, studentDto.getCityId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -104,18 +88,16 @@ public class StudentDaoImpl implements StudentDao {
     private Student buildStudent(ResultSet resultSet) throws SQLException {
         Student student = new Student();
         student.setId(resultSet.getInt(STUDENT_ID));
-        student.setFirstName(resultSet.getString(FIRST_NAME));
-        student.setLastName(resultSet.getString(LAST_NAME));
+        student.setFirstName(resultSet.getString(STUDENT_FIRST_NAME));
+        student.setLastName(resultSet.getString(STUDENT_LAST_NAME));
+        student.setCity(buildCity(resultSet));
         return student;
     }
 
-    private StudentWithCityDto buildStudentWithCity(ResultSet resultSet) throws SQLException {
-        StudentWithCityDto studentWithCityDto = new StudentWithCityDto();
-        studentWithCityDto.setStudentId(resultSet.getInt(STUDENT_ID));
-        studentWithCityDto.setStudentFirstName(resultSet.getString(FIRST_NAME));
-        studentWithCityDto.setStudentLastName(resultSet.getString(LAST_NAME));
-        studentWithCityDto.setCityId(resultSet.getInt(CITY_ID));
-        studentWithCityDto.setCityName(resultSet.getString(NAME));
-        return studentWithCityDto;
+    private City buildCity(ResultSet resultSet) throws SQLException {
+        City city = new City();
+        city.setId(resultSet.getInt(CITY_ID));
+        city.setName(resultSet.getString(CITY_NAME));
+        return city;
     }
 }

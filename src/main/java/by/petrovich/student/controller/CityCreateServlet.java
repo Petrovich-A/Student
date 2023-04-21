@@ -34,7 +34,7 @@ public class CityCreateServlet extends HttpServlet {
         String name = request.getParameter("name");
         City city = new City(name);
         CITY_DAO.create(city);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/city");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/goToCityPage");
         requestDispatcher.forward(request, response);
     }
 

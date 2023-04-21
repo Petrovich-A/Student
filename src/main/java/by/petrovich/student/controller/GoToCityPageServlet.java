@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/city")
-public class CityServlet extends HttpServlet {
+@WebServlet("/goToCityPage")
+public class GoToCityPageServlet extends HttpServlet {
     private static final CityDao CITY_DAO = new CityDaoImpl();
 
     public void init() {

@@ -4,33 +4,52 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class StudentDto {
-    private String firstName;
-    private String lastName;
-    private Integer cityId;
+    private int studentId;
+    private String studentFirstName;
+    private String studentLastName;
+    private int cityId;
+    private String cityName;
 
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName, int cityId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public StudentDto(String studentFirstName, String studentLastName, int cityId) {
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentLastName;
         this.cityId = cityId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public StudentDto(int studentId, String studentFirstName, String studentLastName, int cityId, String cityName) {
+        this.studentId = studentId;
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentLastName;
+        this.cityId = cityId;
+        this.cityName = cityName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public int getStudentId() {
+        return studentId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getStudentFirstName() {
+        return studentFirstName;
+    }
+
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
     public int getCityId() {
@@ -41,25 +60,35 @@ public class StudentDto {
         this.cityId = cityId;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDto that = (StudentDto) o;
-        return cityId == that.cityId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+        return studentId == that.studentId && cityId == that.cityId && Objects.equals(studentFirstName, that.studentFirstName) && Objects.equals(studentLastName, that.studentLastName) && Objects.equals(cityName, that.cityName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, cityId);
+        return Objects.hash(studentId, studentFirstName, studentLastName, cityId, cityName);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", StudentDto.class.getSimpleName() + "[", "]")
-                .add("firstName='" + firstName + "'")
-                .add("lastName='" + lastName + "'")
+                .add("studentId=" + studentId)
+                .add("studentFirstName='" + studentFirstName + "'")
+                .add("studentLastName='" + studentLastName + "'")
                 .add("cityId=" + cityId)
+                .add("cityName='" + cityName + "'")
                 .toString();
     }
 }

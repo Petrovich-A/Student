@@ -32,7 +32,7 @@ public class StudentDeleteByIdServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("studentId"));
         STUDENT_DAO.deleteById(id);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/student");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);
     }
 

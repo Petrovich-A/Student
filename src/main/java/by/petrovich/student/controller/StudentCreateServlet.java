@@ -32,7 +32,7 @@ public class StudentCreateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         STUDENT_DAO.create(buildStudentDto(request));
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/student");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);
     }
 
@@ -42,7 +42,7 @@ public class StudentCreateServlet extends HttpServlet {
     private StudentDto buildStudentDto(HttpServletRequest request) {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        Integer cityId = Integer.valueOf(request.getParameter("cityId"));
+        int cityId = Integer.parseInt(request.getParameter("cityId"));
         return new StudentDto(firstName, lastName, cityId);
     }
 }

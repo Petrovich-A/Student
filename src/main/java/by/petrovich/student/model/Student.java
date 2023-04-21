@@ -6,14 +6,16 @@ public class Student {
     private int id;
     private String firstName;
     private String lastName;
+    private City city;
 
     public Student() {
     }
 
-    public Student(int id, String firstName, String lastName) {
+    public Student(int id, String firstName, String lastName, City city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.city = city;
     }
 
     public int getId() {
@@ -40,24 +42,34 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName);
+        return id == student.id && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(city, student.city);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, city);
     }
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id +
+        return "Student{" +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", city=" + city +
                 '}';
     }
 }

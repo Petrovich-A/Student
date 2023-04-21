@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static by.petrovich.student.dao.FieldName.CITY_ID;
-import static by.petrovich.student.dao.FieldName.NAME;
+import static by.petrovich.student.dao.FieldName.CITY_NAME;
 
 public class CityDaoImpl implements CityDao {
     private final String SELECT_ALL = "SELECT city_id, name ";
@@ -96,7 +96,7 @@ public class CityDaoImpl implements CityDao {
     private City buildCity(ResultSet resultSet) throws SQLException {
         City city = new City();
         city.setId(resultSet.getInt(CITY_ID));
-        city.setName(resultSet.getString(NAME));
+        city.setName(resultSet.getString(CITY_NAME));
         return city;
     }
 

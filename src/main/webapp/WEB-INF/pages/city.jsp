@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="main">MAIN</a></li>
-            <li><a href="student">STUDENTS</a></li>
-            <li><a href="city">CITIES</a></li>
+            <li><a href="goToMainPage">MAIN</a></li>
+            <li><a href="goToStudentPage">STUDENTS</a></li>
+            <li><a href="goToCityPage">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -49,9 +49,8 @@
                                         <input type=radio name="cityId" value="${city.getId()}"
                                                required="required">
                                     </label>${city.getId()}</td>
-                                    <td><label>
-                                        <input type="hidden" name="cityName" value="${city.getName()}">
-                                    </label>${city.getName()}</td>
+                                    <td><input type="hidden" name="cityName" value="${city.getName()}">${city.getName()}
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102 </li>
         <div class="items">
-            <li><a href="main">MAIN</a></li>
-            <li><a href="student">STUDENTS</a></li>
-            <li><a href="city">CITIES</a></li>
+            <li><a href="goToMainPage">MAIN</a></li>
+            <li><a href="goToStudentPage">STUDENTS</a></li>
+            <li><a href="goToCityPage">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -37,16 +37,16 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>STUDENT FIRST NAME</th>
-                            <th>STUDENT LAST NAME</th>
+                            <th>FIRST NAME</th>
+                            <th>LAST NAME</th>
+                            <th>CITY</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>${student.getId()}</td>
                             <td>${student.getFirstName()}</td>
                             <td>${student.getLastName()}</td>
+                            <td>${student.getCity().getName()}</td>
                         </tr>
                         </tbody>
                     </table>

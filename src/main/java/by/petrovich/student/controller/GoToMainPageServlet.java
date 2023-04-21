@@ -2,7 +2,7 @@ package by.petrovich.student.controller;
 
 import by.petrovich.student.dao.StudentDao;
 import by.petrovich.student.dao.impl.StudentDaoImpl;
-import by.petrovich.student.dto.StudentWithCityDto;
+import by.petrovich.student.model.Student;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/goToMainPage")
+public class GoToMainPageServlet extends HttpServlet {
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     public void init() {
@@ -32,8 +32,8 @@ public class MainServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<StudentWithCityDto> studentWithCityDto = STUDENT_DAO.receiveAllWithCites();
-        request.setAttribute("studentWithCityDto", studentWithCityDto);
+        List<Student> students = STUDENT_DAO.receiveAll();
+        request.setAttribute("students", students);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/main.jsp");
         requestDispatcher.forward(request, response);
     }

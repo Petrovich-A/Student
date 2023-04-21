@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/student")
-public class StudentServlet extends HttpServlet {
+@WebServlet("/goToStudentPage")
+public class GoToStudentPageServlet extends HttpServlet {
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     public void init() {

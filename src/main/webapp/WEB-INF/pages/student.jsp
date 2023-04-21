@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="main">MAIN</a></li>
-            <li><a href="student">STUDENTS</a></li>
-            <li><a href="city">CITIES</a></li>
+            <li><a href="goToMainPage">MAIN</a></li>
+            <li><a href="goToStudentPage">STUDENTS</a></li>
+            <li><a href="goToCityPage">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -38,20 +38,23 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>STUDENT FIRST NAME</th>
-                                <th>STUDENT LAST NAME</th>
+                                <th></th>
+                                <th>FIRST NAME</th>
+                                <th>LAST NAME</th>
+                                <th>CITY</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="student" items="${students}">
                                 <tr>
-                                    <td><label>
+                                    <td>
                                         <input type="radio" name="studentId" value="${student.getId()}"
-                                               required="required">
-                                    </label>${student.getId()}</td>
+                                               required="required"></td>
                                     <td>${student.getFirstName()}</td>
                                     <td>${student.getLastName()}</td>
+                                    <td>${student.getCity().getName()}</td>
+                                    <td><input type="hidden" name="cityId" value="${student.getCity().getId()}">
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

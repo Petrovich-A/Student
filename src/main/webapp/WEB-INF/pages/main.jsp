@@ -12,9 +12,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="main">MAIN</a></li>
-            <li><a href="student">STUDENTS</a></li>
-            <li><a href="city">CITIES</a></li>
+            <li><a href="goToMainPage">MAIN</a></li>
+            <li><a href="goToStudentPage">STUDENTS</a></li>
+            <li><a href="goToCityPage">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -25,9 +25,9 @@
 <main>
     <c:choose>
         <c:when
-                test="${studentWithCityDto.size() == 0 || studentWithCityDto.size() == null}">
+                test="${students.size() == 0 || students.size() == null}">
             <p>
-                <c:out value="No studentWithCityDto"/>
+                <c:out value="No students"/>
             </p>
             <hr>
         </c:when>
@@ -44,13 +44,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="studentWithCityDto" items="${studentWithCityDto}">
+                    <c:forEach var="student" items="${students}">
                         <tr>
-                            <td>${studentWithCityDto.getStudentId()}</td>
-                            <td>${studentWithCityDto.getStudentFirstName()}</td>
-                            <td>${studentWithCityDto.getStudentLastName()}</td>
-                            <td>${studentWithCityDto.getCityId()}</td>
-                            <td>${studentWithCityDto.getCityName()}</td>
+                            <td>${student.getId()}</td>
+                            <td>${student.getFirstName()}</td>
+                            <td>${student.getLastName()}</td>
+                            <td>${student.getCity().getId()}</td>
+                            <td>${student.getCity().getName()}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

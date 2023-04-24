@@ -19,6 +19,13 @@ public class StudentDto {
         this.cityId = cityId;
     }
 
+    public StudentDto(int studentId, String studentFirstName, String studentLastName, int cityId) {
+        this.studentId = studentId;
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentLastName;
+        this.cityId = cityId;
+    }
+
     public StudentDto(int studentId, String studentFirstName, String studentLastName, int cityId, String cityName) {
         this.studentId = studentId;
         this.studentFirstName = studentFirstName;
@@ -26,6 +33,7 @@ public class StudentDto {
         this.cityId = cityId;
         this.cityName = cityName;
     }
+
 
 
     public int getStudentId() {

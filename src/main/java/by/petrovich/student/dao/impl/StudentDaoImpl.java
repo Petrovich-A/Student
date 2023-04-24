@@ -26,6 +26,7 @@ public class StudentDaoImpl implements StudentDao {
     private final String DELETE = "DELETE ";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
     private final String FROM = "FROM students ";
+    private final String UPDATE = "UPDATE students SET first_name = ?, last_name = ?,  city_id = ? ";
     private final String WHERE_ID = "WHERE student_id = ?";
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
     private final CityDao cityDao = new CityDaoImpl();
@@ -79,6 +80,20 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement.setString(1, studentDto.getStudentFirstName());
             preparedStatement.setString(2, studentDto.getStudentLastName());
             preparedStatement.setInt(3, studentDto.getCityId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateById(StudentDto studentDto) {
+        try (Connection connection = databaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE + WHERE_ID)) {
+            preparedStatement.setString(1, studentDto.getStudentFirstName());
+            preparedStatement.setString(2, studentDto.getStudentLastName());
+            preparedStatement.setInt(3, studentDto.getCityId());
+            preparedStatement.setInt(4, studentDto.getStudentId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

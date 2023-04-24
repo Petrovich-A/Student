@@ -15,6 +15,7 @@
 <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Petrovich-A/Student?style=for-the-badge">
 </a>
 </p>
+</div>
 
 <br />
 

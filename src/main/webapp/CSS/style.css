@@ -25,6 +25,7 @@ nav ul {
 }
 
 nav ul li.logo {
+    background: darkorange;
     color: #000000;
     flex: 1;
     font-size: 30px;
@@ -32,7 +33,7 @@ nav ul li.logo {
 }
 
 .logo span {
-    color: #ffc500;
+    color: white;
     font-weight: 700;
 }
 
@@ -51,7 +52,10 @@ nav ul div.items a {
 }
 
 nav ul div.items a:hover {
-    color: #000000;
+    background: darkorange;
+    box-shadow: 0 15px 20px rgb(253, 199, 81);
+    color: white;
+    transform: translateY(-3px);
 }
 
 body {

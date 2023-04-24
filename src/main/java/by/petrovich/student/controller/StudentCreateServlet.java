@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
+import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_FIRST_NAME;
+import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_LAST_NAME;
+
 
 @WebServlet("/studentCreate")
 public class StudentCreateServlet extends HttpServlet {
@@ -40,9 +44,9 @@ public class StudentCreateServlet extends HttpServlet {
     }
 
     private StudentDto buildStudentDto(HttpServletRequest request) {
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        int cityId = Integer.parseInt(request.getParameter("cityId"));
+        String firstName = request.getParameter(STUDENT_FIRST_NAME);
+        String lastName = request.getParameter(STUDENT_LAST_NAME);
+        int cityId = Integer.parseInt(request.getParameter(CITY_ID));
         return new StudentDto(firstName, lastName, cityId);
     }
 }

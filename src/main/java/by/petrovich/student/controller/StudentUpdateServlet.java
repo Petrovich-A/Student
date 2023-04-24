@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
+import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
+import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_STUDENT_FIRST_NAME;
+import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_STUDENT_LAST_NAME;
+
 
 @WebServlet("/studentUpdateById")
 public class StudentUpdateServlet extends HttpServlet {
@@ -40,10 +45,10 @@ public class StudentUpdateServlet extends HttpServlet {
     }
 
     private StudentDto buildStudentDto(HttpServletRequest request) {
-        int studentId = Integer.parseInt(request.getParameter("studentId"));
-        String firstName = request.getParameter("updatedStudentFirstName");
-        String lastName = request.getParameter("updatedStudentLastName");
-        int cityId = Integer.parseInt(request.getParameter("cityId"));
+        int studentId = Integer.parseInt(request.getParameter(STUDENT_ID));
+        String firstName = request.getParameter(UPDATED_STUDENT_FIRST_NAME);
+        String lastName = request.getParameter(UPDATED_STUDENT_LAST_NAME);
+        int cityId = Integer.parseInt(request.getParameter(CITY_ID));
         return new StudentDto(studentId, firstName, lastName, cityId);
     }
 }

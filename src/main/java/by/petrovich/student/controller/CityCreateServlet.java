@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITY_NAME;
+
 
 @WebServlet("/cityCreate")
 public class CityCreateServlet extends HttpServlet {
@@ -31,7 +33,7 @@ public class CityCreateServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter(CITY_NAME);
         City city = new City(name);
         CITY_DAO.create(city);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/goToCityPage");

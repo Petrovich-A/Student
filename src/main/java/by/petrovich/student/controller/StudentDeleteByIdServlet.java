@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
+
 
 @WebServlet("/studentDeleteById")
 public class StudentDeleteByIdServlet extends HttpServlet {
@@ -30,7 +32,7 @@ public class StudentDeleteByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("studentId"));
+        int id = Integer.parseInt(request.getParameter(STUDENT_ID));
         STUDENT_DAO.deleteById(id);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);

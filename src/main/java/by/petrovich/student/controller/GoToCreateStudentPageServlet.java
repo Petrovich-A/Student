@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
+
 
 @WebServlet("/goToCreateStudentPage")
 public class GoToCreateStudentPageServlet extends HttpServlet {
@@ -35,9 +37,9 @@ public class GoToCreateStudentPageServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentCreate.jsp");
         List<City> cities = CITY_DAO.receiveAll();
-        request.setAttribute("cities", cities);
+        request.setAttribute(CITIES, cities);
         HttpSession session = request.getSession(true);
-        session.setAttribute("cities", cities);
+        session.setAttribute(CITIES, cities);
         requestDispatcher.forward(request, response);
     }
 

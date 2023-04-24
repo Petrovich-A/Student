@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITY;
+import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
+
 
 @WebServlet("/cityReadById")
 public class CityReadByIdServlet extends HttpServlet {
@@ -31,9 +34,9 @@ public class CityReadByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("cityId"));
+        int id = Integer.parseInt(request.getParameter(CITY_ID));
         City city = CITY_DAO.readById(id);
-        request.setAttribute("city", city);
+        request.setAttribute(CITY, city);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityRead.jsp");
         requestDispatcher.forward(request, response);
     }

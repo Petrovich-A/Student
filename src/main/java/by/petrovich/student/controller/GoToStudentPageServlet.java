@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.petrovich.student.controller.RequestAttributeNames.STUDENTS;
+
 
 @WebServlet("/goToStudentPage")
 public class GoToStudentPageServlet extends HttpServlet {
@@ -33,7 +35,7 @@ public class GoToStudentPageServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Student> students = STUDENT_DAO.receiveAll();
-        request.setAttribute("students", students);
+        request.setAttribute(STUDENTS, students);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/student.jsp");
         requestDispatcher.forward(request, response);
     }

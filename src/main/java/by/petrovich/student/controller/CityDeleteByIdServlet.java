@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
+
 
 @WebServlet("/cityDeleteById")
 public class CityDeleteByIdServlet extends HttpServlet {
@@ -30,7 +32,7 @@ public class CityDeleteByIdServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("cityId"));
+        int id = Integer.parseInt(request.getParameter(CITY_ID));
         CITY_DAO.deleteById(id);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/goToCityPage");
         requestDispatcher.forward(request, response);

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
+
 
 @WebServlet("/goToCityPage")
 public class GoToCityPageServlet extends HttpServlet {
@@ -33,7 +35,7 @@ public class GoToCityPageServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<City> cities = CITY_DAO.receiveAll();
-        request.setAttribute("cities", cities);
+        request.setAttribute(CITIES, cities);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/city.jsp");
         requestDispatcher.forward(request, response);
     }

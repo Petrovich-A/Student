@@ -21,7 +21,6 @@ public class CityDaoImpl implements CityDao {
     private final String FROM = "FROM cities ";
     private final String DELETE = "DELETE ";
     private final String UPDATE = "UPDATE cities SET name = ? ";
-    private final String WHERE_NAME = "WHERE name = ?";
     private final String WHERE_ID = "WHERE city_id = ?";
 
     private final DatabaseConnector databaseConnector = new DatabaseConnector();
@@ -78,8 +77,6 @@ public class CityDaoImpl implements CityDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @Override

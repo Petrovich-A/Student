@@ -45,10 +45,10 @@
                             <tbody>
                             <c:forEach var="city" items="${cities}">
                                 <tr>
-                                    <td><input type=radio name="cityId" value="${city.getId()}" required="required">
+                                    <td><input type=radio name="cityId" value="${city.getId()}"
+                                               required="required">
                                     </td>
-                                    <td><input type="hidden" name="cityName" value="${city.getName()}">${city.getName()}
-                                    </td>
+                                    <td>${city.getName()}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

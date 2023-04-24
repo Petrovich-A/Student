@@ -11,7 +11,7 @@
 </head>
 <nav>
     <ul>
-        <li class="logo"><span>STUDENT</span> APP &#128102 </li>
+        <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
             <li><a href="goToMainPage">MAIN</a></li>
             <li><a href="goToStudentPage">STUDENTS</a></li>
@@ -28,9 +28,9 @@
             <div class="container">
                 <table>
                     <tr>
-                        <td>CITY NAME: </td>
-                        <td><input type="text" name="name" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
-                                   title="Input city name"/></td>
+                        <td>CITY NAME:</td>
+                        <td><input type="text" name="cityName" pattern="[a-z,A-Z,а-я,А-Я,\s]{2,30}"
+                                   title="Input city name" required/></td>
                     </tr>
                 </table>
             </div>

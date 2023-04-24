@@ -2,7 +2,6 @@ package by.petrovich.student.dao.impl;
 
 import by.petrovich.student.dao.CityDao;
 import by.petrovich.student.dao.StudentDao;
-import by.petrovich.student.dto.StudentDto;
 import by.petrovich.student.model.City;
 import by.petrovich.student.model.Student;
 import by.petrovich.student.utils.DatabaseConnector;
@@ -74,12 +73,12 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public void create(StudentDto studentDto) {
+    public void create(Student student) {
         try (Connection connection = databaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
-            preparedStatement.setString(1, studentDto.getStudentFirstName());
-            preparedStatement.setString(2, studentDto.getStudentLastName());
-            preparedStatement.setInt(3, studentDto.getCityId());
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setInt(3, student.getCity().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -87,13 +86,13 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public void updateById(StudentDto studentDto) {
+    public void updateById(Student student) {
         try (Connection connection = databaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE + WHERE_ID)) {
-            preparedStatement.setString(1, studentDto.getStudentFirstName());
-            preparedStatement.setString(2, studentDto.getStudentLastName());
-            preparedStatement.setInt(3, studentDto.getCityId());
-            preparedStatement.setInt(4, studentDto.getStudentId());
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setInt(3, student.getCity().getId());
+            preparedStatement.setInt(4, student.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

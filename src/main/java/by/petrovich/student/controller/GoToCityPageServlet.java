@@ -1,8 +1,8 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.dao.CityDao;
-import by.petrovich.student.dao.impl.CityDaoImpl;
 import by.petrovich.student.model.City;
+import by.petrovich.student.service.CityService;
+import by.petrovich.student.service.impl.CityServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
 
 @WebServlet("/goToCityPage")
 public class GoToCityPageServlet extends HttpServlet {
-    private static final CityDao CITY_DAO = new CityDaoImpl();
+    private static final CityService CITY_SERVICE = new CityServiceImpl();
 
     public void init() {
     }
@@ -34,7 +34,7 @@ public class GoToCityPageServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<City> cities = CITY_DAO.receiveAll();
+        List<City> cities = CITY_SERVICE.receiveAll();
         request.setAttribute(CITIES, cities);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/city.jsp");
         requestDispatcher.forward(request, response);

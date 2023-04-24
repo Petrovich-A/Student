@@ -7,34 +7,23 @@ public class StudentDto {
     private int studentId;
     private String studentFirstName;
     private String studentLastName;
-    private int cityId;
-    private String cityName;
+    private CityDto cityDto;
 
     public StudentDto() {
     }
 
-    public StudentDto(String studentFirstName, String studentLastName, int cityId) {
+    public StudentDto(String studentFirstName, String studentLastName, CityDto cityDto) {
         this.studentFirstName = studentFirstName;
         this.studentLastName = studentLastName;
-        this.cityId = cityId;
+        this.cityDto = cityDto;
     }
 
-    public StudentDto(int studentId, String studentFirstName, String studentLastName, int cityId) {
+    public StudentDto(int studentId, String studentFirstName, String studentLastName, CityDto cityDto) {
         this.studentId = studentId;
         this.studentFirstName = studentFirstName;
         this.studentLastName = studentLastName;
-        this.cityId = cityId;
+        this.cityDto = cityDto;
     }
-
-    public StudentDto(int studentId, String studentFirstName, String studentLastName, int cityId, String cityName) {
-        this.studentId = studentId;
-        this.studentFirstName = studentFirstName;
-        this.studentLastName = studentLastName;
-        this.cityId = cityId;
-        this.cityName = cityName;
-    }
-
-
 
     public int getStudentId() {
         return studentId;
@@ -60,20 +49,12 @@ public class StudentDto {
         this.studentLastName = studentLastName;
     }
 
-    public int getCityId() {
-        return cityId;
+    public CityDto getCityDto() {
+        return cityDto;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setCityDto(CityDto cityDto) {
+        this.cityDto = cityDto;
     }
 
     @Override
@@ -81,12 +62,12 @@ public class StudentDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDto that = (StudentDto) o;
-        return studentId == that.studentId && cityId == that.cityId && Objects.equals(studentFirstName, that.studentFirstName) && Objects.equals(studentLastName, that.studentLastName) && Objects.equals(cityName, that.cityName);
+        return studentId == that.studentId && Objects.equals(studentFirstName, that.studentFirstName) && Objects.equals(studentLastName, that.studentLastName) && Objects.equals(cityDto, that.cityDto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentId, studentFirstName, studentLastName, cityId, cityName);
+        return Objects.hash(studentId, studentFirstName, studentLastName, cityDto);
     }
 
     @Override
@@ -95,8 +76,7 @@ public class StudentDto {
                 .add("studentId=" + studentId)
                 .add("studentFirstName='" + studentFirstName + "'")
                 .add("studentLastName='" + studentLastName + "'")
-                .add("cityId=" + cityId)
-                .add("cityName='" + cityName + "'")
+                .add("cityDto=" + cityDto)
                 .toString();
     }
 }

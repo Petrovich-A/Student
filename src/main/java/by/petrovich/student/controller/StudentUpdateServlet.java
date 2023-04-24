@@ -1,8 +1,9 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.dao.StudentDao;
-import by.petrovich.student.dao.impl.StudentDaoImpl;
+import by.petrovich.student.dto.CityDto;
 import by.petrovich.student.dto.StudentDto;
+import by.petrovich.student.service.StudentService;
+import by.petrovich.student.service.impl.StudentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,8 @@ import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_STUD
 
 @WebServlet("/studentUpdateById")
 public class StudentUpdateServlet extends HttpServlet {
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
+
+    private static final StudentService STUDENT_SERVICE = new StudentServiceImpl();
 
     public void init() {
     }
@@ -36,7 +38,7 @@ public class StudentUpdateServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        STUDENT_DAO.updateById(buildStudentDto(request));
+        STUDENT_SERVICE.updateById(buildStudentDto(request));
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);
     }
@@ -48,7 +50,8 @@ public class StudentUpdateServlet extends HttpServlet {
         int studentId = Integer.parseInt(request.getParameter(STUDENT_ID));
         String firstName = request.getParameter(UPDATED_STUDENT_FIRST_NAME);
         String lastName = request.getParameter(UPDATED_STUDENT_LAST_NAME);
-        int cityId = Integer.parseInt(request.getParameter(CITY_ID));
-        return new StudentDto(studentId, firstName, lastName, cityId);
+        CityDto cityDto = new CityDto();
+        cityDto.setId(Integer.parseInt(request.getParameter(CITY_ID)));
+        return new StudentDto(studentId, firstName, lastName, cityDto);
     }
 }

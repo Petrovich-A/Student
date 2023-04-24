@@ -1,6 +1,5 @@
 package by.petrovich.student.dao;
 
-import by.petrovich.student.dto.StudentDto;
 import by.petrovich.student.model.Student;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public interface StudentDao {
 
     void deleteById(int id);
 
-    void create(StudentDto studentDto);
-    void updateById(StudentDto studentDto);
+    void create(Student student);
+    void updateById(Student student);
 
 }

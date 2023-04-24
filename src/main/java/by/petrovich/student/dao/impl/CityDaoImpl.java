@@ -1,7 +1,6 @@
 package by.petrovich.student.dao.impl;
 
 import by.petrovich.student.dao.CityDao;
-import by.petrovich.student.dto.CityDto;
 import by.petrovich.student.model.City;
 import by.petrovich.student.utils.DatabaseConnector;
 
@@ -68,11 +67,11 @@ public class CityDaoImpl implements CityDao {
     }
 
     @Override
-    public void updateById(CityDto cityDto) {
+    public void updateById(City city) {
         try (Connection connection = databaseConnector.receiveConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE + WHERE_ID)) {
-            preparedStatement.setString(1, cityDto.getName());
-            preparedStatement.setInt(2, cityDto.getId());
+            preparedStatement.setString(1, city.getName());
+            preparedStatement.setInt(2, city.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

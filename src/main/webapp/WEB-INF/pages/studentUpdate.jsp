@@ -39,15 +39,15 @@
                     <tr>
                         <input type="hidden" value="${student.getId()}" name="studentId"/>
                         <td>FIRST NAME:</td>
-                        <td><input type="text" value="${student.getFirstName()}" name="updatedStudentFirstName"
-                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input first name"/></td>
+                        <td><label><input type="text" value="${student.getFirstName()}" name="updatedStudentFirstName"
+                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input first name"/></label></td>
                         <td>LAST NAME:</td>
-                        <td><input type="text" value="${student.getLastName()}" name="updatedStudentLastName"
-                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input last name"/></td>
+                        <td><label><input type="text" value="${student.getLastName()}" name="updatedStudentLastName"
+                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input last name"/></label></td>
                         <td>CITY:</td>
-                        <td><select name='cityId'>
+                        <td><select name='cityId' required>
                             <c:forEach items="${cities}" var="city">
-                                <option value="${city.getId()}">${city.getName()}
+                                <option value="${city.getId()}" select="{${city.getName()}">${city.getName()}
                                 </option>
                             </c:forEach>
                         </select>

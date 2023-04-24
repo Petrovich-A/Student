@@ -29,17 +29,17 @@
                 <table>
                     <tr>
                         <td>STUDENT FIRST NAME:</td>
-                        <td><input type="text" name="firstName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
+                        <td><input type="text" name="studentFirstName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
                                    title="Input student first name"/></td>
                     </tr>
                     <tr>
                         <td>STUDENT LAST NAME:</td>
-                        <td><input type="text" name="lastName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
+                        <td><input type="text" name="studentLastName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
                                    title="Input student last name"/></td>
                     </tr>
                     <tr>
                         <td>CITY:</td>
-                        <td><select name='cityId'>
+                        <td><select name='cityId' required>
                             <c:forEach items="${cities}" var="city">
                                 <option value="${city.getId()}">${city.getName()}
                                 </option>

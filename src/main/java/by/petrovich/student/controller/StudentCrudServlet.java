@@ -42,22 +42,26 @@ public class StudentCrudServlet extends HttpServlet {
     }
 
     private void selectAction(HttpServletRequest request, HttpServletResponse response, String action) throws ServletException, IOException {
-        RequestDispatcher dispatcher;
+        RequestDispatcher requestDispatcher;
         if ("readById".equals(action)) {
-            dispatcher = getServletContext().getRequestDispatcher("/studentReadById");
-            dispatcher.forward(request, response);
+            requestDispatcher = getServletContext().getRequestDispatcher("/studentReadById");
+            requestDispatcher.forward(request, response);
         }
         if ("create".equals(action)) {
-            dispatcher = getServletContext().getRequestDispatcher("/studentCreate");
-            dispatcher.forward(request, response);
+            requestDispatcher = getServletContext().getRequestDispatcher("/studentCreate");
+            requestDispatcher.forward(request, response);
         }
         if ("deleteById".equals(action)) {
-            dispatcher = getServletContext().getRequestDispatcher("/studentDeleteById");
-            dispatcher.forward(request, response);
+            requestDispatcher = getServletContext().getRequestDispatcher("/studentDeleteById");
+            requestDispatcher.forward(request, response);
         }
         if ("update".equals(action)) {
-            dispatcher = getServletContext().getRequestDispatcher("/studentUpdateById");
-            dispatcher.forward(request, response);
+            requestDispatcher = getServletContext().getRequestDispatcher("/studentUpdateById");
+            requestDispatcher.forward(request, response);
+        }
+        if ("goToUpdateStudentPage".equals(action)) {
+            requestDispatcher = request.getRequestDispatcher("/goToUpdateStudentPage");
+            requestDispatcher.forward(request, response);
         }
     }
 

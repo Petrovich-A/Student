@@ -63,7 +63,7 @@
                 </c:otherwise>
             </c:choose>
             <button class="button" type="submit" name="action" value="readById">Read</button>
-            <button class="button" type="submit" name="action" value="update">Update</button>
+            <button class="button" type="submit" name="action" value="goToUpdateStudentPage">Update</button>
             <button class="button" type="submit" name="action" value="deleteById">Delete</button>
         </form>
         <form action="goToCreateStudentPage" method="POST">

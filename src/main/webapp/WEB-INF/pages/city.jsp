@@ -38,17 +38,15 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>CITY ID</th>
+                                <th></th>
                                 <th>CITY NAME</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="city" items="${cities}">
                                 <tr>
-                                    <td><label>
-                                        <input type=radio name="cityId" value="${city.getId()}"
-                                               required="required">
-                                    </label>${city.getId()}</td>
+                                    <td><input type=radio name="cityId" value="${city.getId()}" required="required">
+                                    </td>
                                     <td><input type="hidden" name="cityName" value="${city.getName()}">${city.getName()}
                                     </td>
                                 </tr>

@@ -19,6 +19,7 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
     <body>
     <div>

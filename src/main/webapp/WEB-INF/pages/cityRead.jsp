@@ -19,39 +19,38 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
-    <body>
-    <div>
-        <h2>City</h2>
-        <br>
-        <c:choose>
-            <c:when test="${city == null}">
-                <p>
-                    <c:out value="No cities"/>
-                </p>
-                <hr>
-            </c:when>
-            <c:otherwise>
-                <div class="container">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>CITY ID</th>
-                            <th>CITY NAME</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>${city.getId()}</td>
-                            <td>${city.getName()}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </c:otherwise>
-        </c:choose>
-    </div>
-    </body>
+<div>
+    <h2>City</h2>
+    <br>
+    <c:choose>
+        <c:when test="${city == null}">
+            <p>
+                <c:out value="No cities"/>
+            </p>
+            <hr>
+        </c:when>
+        <c:otherwise>
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>CITY ID</th>
+                        <th>CITY NAME</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>${city.getId()}</td>
+                        <td>${city.getName()}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </c:otherwise>
+    </c:choose>
+</div>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

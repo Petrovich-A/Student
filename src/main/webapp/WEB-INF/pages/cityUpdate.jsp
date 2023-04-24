@@ -19,8 +19,8 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
-    <body>
     <div>
         <h2>Update city: </h2>
         <br>
@@ -51,7 +51,6 @@
             </form>
         </div>
     </div>
-    </body>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

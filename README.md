@@ -37,20 +37,24 @@
 
 <!-- Screenshots -->
 
-The main task of this project is to display on `JSP` a group data from database using plain `JDBC` and the `PostgreSQL` database. 
-Was created two tables: cities and students with `1:M` relationship between two entities respectively. The application allows 
-to generate a list of all students and cities. Moreover, can be displayed a resulting table using SQL queries to database.
+The main task of this project is to display on `JSP` a group data from database using plain `JDBC` and the `PostgreSQL`
+database.
+Was created two tables: cities and students with `1:M` relationship between two entities respectively. The application
+allows
+to generate a list of all students and cities. Moreover, can be displayed a resulting table using SQL queries to
+database.
 
-The application is able to provide all `CRUD` methods related to each entity in table. Thus, operations such as adding new cities,
+The application is able to provide all `CRUD` methods related to each entity in table. Thus, operations such as adding
+new cities,
 new students, deleting students, and deleting cities are available to the user. Some code coverded with unit tests.
 
-The ultimate goal is to develop a fully functioning and reliable web application with the desired capabilities for both 
+The ultimate goal is to develop a fully functioning and reliable web application with the desired capabilities for both
 the primary task and the secondary task.
 
 ### :camera: Screenshots
 
 <div align="center"> 
-  ![main_page](https://user-images.githubusercontent.com/75426047/234339589-3485bc32-e48e-4ff3-8be0-7cb2cefb1e65.png)
+<img src="https://github.com/Petrovich-A/Student/blob/develop/main_page.png" alt="Alt text" title="Optional title">
 </div>
 
 <!-- TechStack -->
@@ -83,9 +87,9 @@ Clone the project
 
 <!-- Roadmap -->
 
-## :compass: Roadmap
+## :compass: Have to fix:
 
-* [ ] to add an error page 
+* [ ] to add an error page
 * [ ] to checking is entity exists
 * [ ] opportunity to delete city which associated with student
 

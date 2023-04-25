@@ -27,7 +27,7 @@
     * [Screenshots](#camera-screenshots)
     * [Tech Stack](#space_invader-tech-stack)
     * [Features](#dart-features)
-- [Roadmap](#compass-roadmap)
+- [Have to fix](#:compass:-Have-to-fix:)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 

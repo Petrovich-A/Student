@@ -62,7 +62,7 @@ the primary task and the secondary task.
   <summary>Show</summary>
   <ul>
     <li><a>Java 1.8.0_282</a></li>
-    <li><a>Apache Tomcat 9.0.73</a></li>
+    <li><a>Apache Tomcat 9.0.73 </a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>PostgreSQL 15.1</a></li>
   </ul>

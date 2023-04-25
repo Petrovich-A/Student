@@ -1,0 +1,62 @@
+<%@ page contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="<c:url value="CSS/style.css"/>"/>
+    <meta charset="UTF-8">
+    <title>Update city JSP</title>
+</head>
+<nav>
+    <ul>
+        <li class="logo"><span>STUDENT</span> APP &#128102</li>
+        <div class="items">
+            <li><a href="goToMainPage">MAIN</a></li>
+            <li><a href="goToStudentPage">STUDENTS</a></li>
+            <li><a href="goToCityPage">CITIES</a></li>
+        </div>
+    </ul>
+</nav>
+<body>
+<main>
+    <div>
+        <h2>Update city: </h2>
+        <br>
+        <c:choose>
+        <c:when test="${cityId == null} || ${cityName == null}">
+            <p>
+                <c:out value="No parametrs"/>
+            </p>
+            <hr>
+        </c:when>
+        <c:otherwise>
+        <div class="container">
+            <form action="cityUpdateById" method="POST">
+                <table>
+                    <tr>
+                        <td>CITY NAME:</td>
+                        <td><label><input type="text" value="${cityName}" name="updatedCityName" required
+                                   pattern="[a-z,A-Z,а-я,А-Я,\s]{2,30}"
+                                   title="Input city name"/></label></td>
+                        <input type="hidden" value="${cityId}" name="cityId"/>
+                    </tr>
+                </table>
+                </c:otherwise>
+                </c:choose>
+                <div>
+                    <button class="button" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>Author: Alexandr Petrovich
+        <br>
+        <a href="https://github.com/Petrovich-A/Student">github: Student App</a>
+    </p>
+</footer>
+</body>
+</html>

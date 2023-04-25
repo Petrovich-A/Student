@@ -61,10 +61,10 @@ the primary task and the secondary task.
 <details>
   <summary>Show</summary>
   <ul>
-    <li><a>Java</a></li>
-    <li><a>TomCat</a></li>
-    <li><a>Maven</a></li>
-    <li><a>PostgreSQL</a></li>
+    <li><a>Java 1.8.0_282</a></li>
+    <li><a>Tomcat 9.0.73</a></li>
+    <li><a>Maven 3.8.1</a></li>
+    <li><a>PostgreSQL 15.1</a></li>
   </ul>
 </details>
 

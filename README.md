@@ -1,8 +1,5 @@
 <div align="center">
-
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
   <h1>Student application</h1>
-
 <!-- Badges -->
 <p>
   <a>
@@ -27,7 +24,7 @@
     * [Screenshots](#camera-screenshots)
     * [Tech Stack](#space_invader-tech-stack)
     * [Features](#dart-features)
-- [Have to fix](#:compass:-Have-to-fix:)
+- [Have to fix](#compass-have-to-fix)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 

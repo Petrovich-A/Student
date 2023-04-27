@@ -20,9 +20,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
 public class GoToCityPageServlet extends HttpServlet {
     private static final CityService CITY_SERVICE = new CityServiceImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -39,8 +36,4 @@ public class GoToCityPageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/city.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

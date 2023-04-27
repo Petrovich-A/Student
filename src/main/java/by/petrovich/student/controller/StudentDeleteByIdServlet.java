@@ -18,9 +18,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
 public class StudentDeleteByIdServlet extends HttpServlet {
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -37,8 +34,4 @@ public class StudentDeleteByIdServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

@@ -25,10 +25,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
 public class GoToUpdateStudentPageServlet extends HttpServlet {
     private static final CityService CITY_SERVICE = new CityServiceImpl();
     private static final StudentService STUDENT_SERVICE = new StudentServiceImpl();
-
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -48,8 +44,4 @@ public class GoToUpdateStudentPageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentUpdate.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

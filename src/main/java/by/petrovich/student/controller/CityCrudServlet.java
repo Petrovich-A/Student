@@ -17,9 +17,6 @@ import java.io.IOException;
 public class CityCrudServlet extends HttpServlet {
     private final static Logger LOGGER = LogManager.getLogger();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -38,9 +35,6 @@ public class CityCrudServlet extends HttpServlet {
         } else {
             LOGGER.log(Level.ERROR, "cityId is null");
         }
-    }
-
-    public void destroy() {
     }
 
     private void selectAction(HttpServletRequest request, HttpServletResponse response, String action) throws ServletException, IOException {

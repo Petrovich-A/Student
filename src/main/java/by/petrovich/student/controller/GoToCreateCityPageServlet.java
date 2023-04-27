@@ -11,8 +11,6 @@ import java.io.IOException;
 
 @WebServlet("/goToCreateCityPage")
 public class GoToCreateCityPageServlet extends HttpServlet {
-    public void init() {
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,8 +26,4 @@ public class GoToCreateCityPageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityCreate.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

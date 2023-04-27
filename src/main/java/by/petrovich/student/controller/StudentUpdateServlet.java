@@ -24,9 +24,6 @@ public class StudentUpdateServlet extends HttpServlet {
 
     private static final StudentService STUDENT_SERVICE = new StudentServiceImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -41,9 +38,6 @@ public class StudentUpdateServlet extends HttpServlet {
         STUDENT_SERVICE.updateById(buildStudentDto(request));
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/goToStudentPage");
         dispatcher.forward(request, response);
-    }
-
-    public void destroy() {
     }
 
     private StudentDto buildStudentDto(HttpServletRequest request) {

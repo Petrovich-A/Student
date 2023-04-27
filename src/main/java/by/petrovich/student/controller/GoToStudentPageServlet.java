@@ -20,9 +20,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENTS;
 public class GoToStudentPageServlet extends HttpServlet {
     private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -39,8 +36,4 @@ public class GoToStudentPageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/student.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

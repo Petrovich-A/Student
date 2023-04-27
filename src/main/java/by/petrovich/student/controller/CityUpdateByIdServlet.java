@@ -20,9 +20,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_CITY
 public class CityUpdateByIdServlet extends HttpServlet {
     private static final CityService CITY_SERVICE = new CityServiceImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -46,8 +43,4 @@ public class CityUpdateByIdServlet extends HttpServlet {
         cityDto.setId(Integer.parseInt(request.getParameter(CITY_ID)));
         return cityDto;
     }
-
-    public void destroy() {
-    }
-
 }

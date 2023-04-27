@@ -17,9 +17,6 @@ import java.io.IOException;
 public class StudentCrudServlet extends HttpServlet {
     private final static Logger LOGGER = LogManager.getLogger();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -64,8 +61,4 @@ public class StudentCrudServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         }
     }
-
-    public void destroy() {
-    }
-
 }

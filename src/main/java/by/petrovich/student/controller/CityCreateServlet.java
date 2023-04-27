@@ -19,9 +19,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.CITY_NAME;
 public class CityCreateServlet extends HttpServlet {
     private static final CityService CITY_SERVICE = new CityServiceImpl();
 
-    public void init() {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -40,8 +37,4 @@ public class CityCreateServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/goToCityPage");
         requestDispatcher.forward(request, response);
     }
-
-    public void destroy() {
-    }
-
 }

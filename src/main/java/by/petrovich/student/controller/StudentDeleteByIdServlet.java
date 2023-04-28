@@ -16,7 +16,7 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
 
 @WebServlet("/studentDeleteById")
 public class StudentDeleteByIdServlet extends HttpServlet {
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
+    private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
-    private static Connection connection;
+    private Connection connection;
     private static final PropertyLoader PROPERTY_LOADER = new PropertyLoader();
     private static final String JDBC_DRIVER_NAME = PROPERTY_LOADER.receivePropertyValue("JDBC_DRIVER_NAME");
     private static final String CONNECTION_URL = PROPERTY_LOADER.receivePropertyValue("CONNECTION_URL");

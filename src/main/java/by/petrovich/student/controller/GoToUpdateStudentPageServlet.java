@@ -23,8 +23,8 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
 
 @WebServlet("/goToUpdateStudentPage")
 public class GoToUpdateStudentPageServlet extends HttpServlet {
-    private static final CityService CITY_SERVICE = new CityServiceImpl();
-    private static final StudentService STUDENT_SERVICE = new StudentServiceImpl();
+    private final CityService CITY_SERVICE = new CityServiceImpl();
+    private final StudentService STUDENT_SERVICE = new StudentServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);

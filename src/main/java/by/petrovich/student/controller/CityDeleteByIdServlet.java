@@ -16,7 +16,7 @@ import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
 
 @WebServlet("/cityDeleteById")
 public class CityDeleteByIdServlet extends HttpServlet {
-    private static final CityService CITY_SERVICE = new CityServiceImpl();
+    private final CityService CITY_SERVICE = new CityServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);

@@ -10,7 +10,7 @@ import by.petrovich.student.service.StudentService;
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
+    private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     @Override
     public List<Student> receiveAll() {

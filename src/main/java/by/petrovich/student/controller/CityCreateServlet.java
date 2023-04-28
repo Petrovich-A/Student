@@ -14,10 +14,9 @@ import java.io.IOException;
 
 import static by.petrovich.student.controller.RequestAttributeNames.CITY_NAME;
 
-
 @WebServlet("/cityCreate")
 public class CityCreateServlet extends HttpServlet {
-    private static final CityService CITY_SERVICE = new CityServiceImpl();
+    private final CityService CITY_SERVICE = new CityServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

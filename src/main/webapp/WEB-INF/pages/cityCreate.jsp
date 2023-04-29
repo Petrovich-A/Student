@@ -25,15 +25,16 @@
         <h2>Create city: </h2>
         <br>
         <form action="cityCreate" method="POST">
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>CITY NAME:</td>
-                        <td><input type="text" name="cityName" pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
-                                   title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may
-                                   contain only one dash or space symbols. The total length of string is from 2 to 25 characters." required/></td>
-                    </tr>
-                </table>
+            <div class="form">
+                <li>
+                    <label>CITY NAME:</label>
+                    <input type="text"
+                           name="cityName"
+                           pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may contain
+                       only one dash or space symbols. The total length of string is from 2 to 25 characters."
+                           required/>
+                </li>
             </div>
             <div>
                 <button class="button" type="submit">Submit</button>

@@ -22,41 +22,40 @@
 <body>
 <main>
     <body>
-    <div>
-        <h2>Create student: </h2>
-        <br>
-        <form action="studentCreate" method="POST">
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>STUDENT FIRST NAME:</td>
-                        <td><input type="text" name="studentFirstName" required pattern="[a-zA-Zа-яА-Я]{2,30}"
-                                   title="Must contain latin and cyrillic uppercase or lowercase letters.
-                                   The total length of string is from 2 to 30 characters."/></td>
-                    </tr>
-                    <tr>
-                        <td>STUDENT LAST NAME:</td>
-                        <td><input type="text" name="studentLastName" required pattern="[a-zA-Zа-яА-Я]{2,30}"
-                                   title="Must contain latin and cyrillic uppercase or lowercase letters.
-                                   The total length of string is from 2 to 30 characters."/></td>
-                    </tr>
-                    <tr>
-                        <td>CITY:</td>
-                        <td><select name='cityId' required>
-                            <c:forEach items="${cities}" var="city">
-                                <option value="${city.getId()}">${city.getName()}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <button class="button" type="submit" name="action" value="create">Submit</button>
-            </div>
-        </form>
-    </div>
+    <h2>Create student: </h2>
+    <br>
+    <form action="studentCreate" method="POST">
+        <div class="form">
+            <li>
+                <label>STUDENT FIRST NAME:</label>
+                <input type="text"
+                       name="studentFirstName"
+                       pattern="[a-zA-Zа-яА-Я]{2,30}"
+                       title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string is from 2 to 30 characters."
+                       required/>
+            </li>
+            <li>
+                <label>STUDENT LAST NAME:</label>
+                <input type="text"
+                       name="studentLastName"
+                       pattern="[a-zA-Zа-яА-Я]{2,30}"
+                       title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string is from 2 to 30 characters."
+                       required/>
+            </li>
+            <li>
+                <label>CITY:</label>
+                <select name='cityId' required>
+                    <c:forEach items="${cities}" var="city">
+                        <option value="${city.getId()}">${city.getName()}
+                        </option>
+                    </c:forEach>
+                </select>
+            </li>
+        </div>
+        <div>
+            <button class="button" type="submit" name="action" value="create">Submit</button>
+        </div>
+    </form>
     </body>
 </main>
 <footer>

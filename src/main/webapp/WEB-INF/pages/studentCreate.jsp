@@ -30,13 +30,15 @@
                 <table>
                     <tr>
                         <td>STUDENT FIRST NAME:</td>
-                        <td><input type="text" name="studentFirstName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
-                                   title="Input student first name"/></td>
+                        <td><input type="text" name="studentFirstName" required pattern="[a-zA-Zа-яА-Я]{2,30}"
+                                   title="Must contain latin and cyrillic uppercase or lowercase letters.
+                                   The total length of string is from 2 to 30 characters."/></td>
                     </tr>
                     <tr>
                         <td>STUDENT LAST NAME:</td>
-                        <td><input type="text" name="studentLastName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
-                                   title="Input student last name"/></td>
+                        <td><input type="text" name="studentLastName" required pattern="[a-zA-Zа-яА-Я]{2,30}"
+                                   title="Must contain latin and cyrillic uppercase or lowercase letters.
+                                   The total length of string is from 2 to 30 characters."/></td>
                     </tr>
                     <tr>
                         <td>CITY:</td>

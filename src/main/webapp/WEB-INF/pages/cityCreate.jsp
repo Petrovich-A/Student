@@ -29,8 +29,9 @@
                 <table>
                     <tr>
                         <td>CITY NAME:</td>
-                        <td><input type="text" name="cityName" pattern="[a-z,A-Z,а-я,А-Я,\s]{2,30}"
-                                   title="Input city name" required/></td>
+                        <td><input type="text" name="cityName" pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
+                                   title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may
+                                   contain only one dash or space symbols. The total length of string is from 2 to 25 characters." required/></td>
                     </tr>
                 </table>
             </div>

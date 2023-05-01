@@ -19,7 +19,7 @@ import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 import static by.petrovich.student.dao.FieldName.STUDENT_LAST_NAME;
 
 public class StudentDaoImpl implements StudentDao {
-    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities USING (city_id);";
+    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities USING (city_id) ORDER BY student_id;";
     private final String READ_BY_ID = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities USING (city_id) WHERE student_id = ?;";
     private final String DELETE_BY_ID = "DELETE FROM students WHERE student_id = ?;";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";

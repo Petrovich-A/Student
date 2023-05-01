@@ -15,7 +15,7 @@ import static by.petrovich.student.dao.FieldName.CITY_ID;
 import static by.petrovich.student.dao.FieldName.CITY_NAME;
 
 public class CityDaoImpl implements CityDao {
-    private final String SELECT_ALL = "SELECT city_id, name FROM cities ";
+    private final String SELECT_ALL = "SELECT city_id, name FROM cities ORDER BY city_id";
     private final String READ_BY_ID = "SELECT city_id, name FROM cities WHERE city_id = ?";
     private final String INSERT = "INSERT INTO cities (name) VALUES (?)";
     private final String DELETE_BY_ID = "DELETE FROM cities WHERE city_id = ?";

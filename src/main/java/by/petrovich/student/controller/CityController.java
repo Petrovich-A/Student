@@ -119,10 +119,10 @@ public class CityController extends HttpServlet {
     }
 
     private CityDto buildCityDto(HttpServletRequest request) {
-        CityDto cityDto = new CityDto();
-        cityDto.setName(request.getParameter(UPDATED_CITY_NAME));
-        cityDto.setId(Integer.parseInt(request.getParameter(CITY_ID)));
-        return cityDto;
+        return CityDto.builder()
+                .id(Integer.parseInt(request.getParameter(CITY_ID)))
+                .name(request.getParameter(UPDATED_CITY_NAME))
+                .build();
     }
 
 }

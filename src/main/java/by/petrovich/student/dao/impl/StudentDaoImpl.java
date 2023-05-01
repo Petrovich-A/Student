@@ -19,8 +19,10 @@ import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 import static by.petrovich.student.dao.FieldName.STUDENT_LAST_NAME;
 
 public class StudentDaoImpl implements StudentDao {
-    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities USING (city_id) ORDER BY student_id;";
-    private final String READ_BY_ID = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities USING (city_id) WHERE student_id = ?;";
+    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities " +
+            "USING(city_id) ORDER BY student_id;";
+    private final String READ_BY_ID = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities" +
+            " USING (city_id) WHERE student_id = ?;";
     private final String DELETE_BY_ID = "DELETE FROM students WHERE student_id = ?;";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
     private final String UPDATE = "UPDATE students SET first_name = ?, last_name = ?,  city_id = ? WHERE student_id = ?;";
@@ -96,18 +98,18 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     private Student buildStudent(ResultSet resultSet) throws SQLException {
-        Student student = new Student();
-        student.setId(resultSet.getInt(STUDENT_ID));
-        student.setFirstName(resultSet.getString(STUDENT_FIRST_NAME));
-        student.setLastName(resultSet.getString(STUDENT_LAST_NAME));
-        student.setCity(buildCity(resultSet));
-        return student;
+        return Student.builder()
+                .id(resultSet.getInt(STUDENT_ID))
+                .firstName(resultSet.getString(STUDENT_FIRST_NAME))
+                .lastName(resultSet.getString(STUDENT_LAST_NAME))
+                .city(buildCity(resultSet))
+                .build();
     }
 
     private City buildCity(ResultSet resultSet) throws SQLException {
-        City city = new City();
-        city.setId(resultSet.getInt(CITY_ID));
-        city.setName(resultSet.getString(CITY_NAME));
-        return city;
+        return City.builder()
+                .id(resultSet.getInt(CITY_ID))
+                .name(resultSet.getString(CITY_NAME))
+                .build();
     }
 }

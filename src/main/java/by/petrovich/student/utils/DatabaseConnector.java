@@ -7,10 +7,10 @@ import java.sql.SQLException;
 public class DatabaseConnector {
     private Connection connection;
     private static final PropertyLoader PROPERTY_LOADER = new PropertyLoader();
-    private static final String JDBC_DRIVER_NAME = PROPERTY_LOADER.receivePropertyValue("JDBC_DRIVER_NAME");
-    private static final String CONNECTION_URL = PROPERTY_LOADER.receivePropertyValue("CONNECTION_URL");
-    private static final String USER_NAME = PROPERTY_LOADER.receivePropertyValue("USER_NAME");
-    private static final String PASSWORD = PROPERTY_LOADER.receivePropertyValue("PASSWORD");
+    private static final String JDBC_DRIVER_NAME = PROPERTY_LOADER.receivePropertyValue("jdbc.driver.name");
+    private static final String CONNECTION_URL = PROPERTY_LOADER.receivePropertyValue("connection.url");
+    private static final String USER_NAME = PROPERTY_LOADER.receivePropertyValue("user.name");
+    private static final String PASSWORD = PROPERTY_LOADER.receivePropertyValue("password");
 
     public Connection receiveConnection() {
         if (connection == null) {

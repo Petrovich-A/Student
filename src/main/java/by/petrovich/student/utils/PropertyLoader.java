@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-    private final static String PROPERTY_PATH = "properties/PostgreSQL-jdbc-config.properties";
+    private final static String PROPERTY_PATH = "properties/application.properties";
     private final static Logger LOGGER = LogManager.getLogger();
     private final static Properties PROPERTIES = new Properties();
 

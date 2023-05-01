@@ -8,7 +8,7 @@ class PropertyLoaderTest {
 
     @Test
     void receivePropertyValue() {
-        String key = "CONNECTION_URL";
+        String key = "connection.url";
         String expected = "jdbc:postgresql://localhost:5432/postgres";
         String actual = propertyLoader.receivePropertyValue(key);
         Assertions.assertEquals(expected, actual);

@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -34,30 +34,43 @@
         </c:when>
         <c:otherwise>
         <div class="container">
-            <form action="studentUpdateById" method="POST">
-                <table>
-                    <tr>
+            <form action="student-controller" method="post">
+                <div class="form">
+                    <li>
                         <input type="hidden" value="${student.getId()}" name="studentId"/>
-                        <td>FIRST NAME:</td>
-                        <td><label><input type="text" value="${student.getFirstName()}" name="updatedStudentFirstName"
-                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input first name"/></label></td>
-                        <td>LAST NAME:</td>
-                        <td><label><input type="text" value="${student.getLastName()}" name="updatedStudentLastName"
-                                   required pattern="[a-z,A-Z,а-я,А-Я]{2,30}" title="Input last name"/></label></td>
-                        <td>CITY:</td>
-                        <td><select name='cityId' required>
+                        <label>FIRST NAME: </label>
+                        <input type="text"
+                               value="${student.getFirstName()}"
+                               name="updatedStudentFirstName"
+                               pattern="[a-zA-Zа-яА-Я]{2,30}"
+                               title="Must contain latin and cyrillic uppercase or lowercase letters. The total
+                                       length of string is from 2 to 30 characters."
+                               required/>
+                    </li>
+                    <li>
+                        <label>LAST NAME: </label>
+                        <input type="text"
+                               value="${student.getLastName()}"
+                               name="updatedStudentLastName"
+                               pattern="[a-zA-Zа-яА-Я]{2,30}"
+                               title="Must contain latin and cyrillic uppercase or lowercase letters. The total length
+                                        of string is from 2 to 30 characters."
+                               required/>
+                    </li>
+                    <li>
+                        <label>CITY:</label>
+                        <select name='cityId' required>
                             <c:forEach items="${cities}" var="city">
                                 <option value="${city.getId()}" select="{${city.getName()}">${city.getName()}
                                 </option>
                             </c:forEach>
                         </select>
-                        </td>
-                    </tr>
-                </table>
-                </c:otherwise>
-                </c:choose>
-                <div>
-                    <button class="button" type="submit">Submit</button>
+                    </li>
+                    </c:otherwise>
+                    </c:choose>
+                    <div>
+                        <button class="button" type="submit" name="action" value="update">Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

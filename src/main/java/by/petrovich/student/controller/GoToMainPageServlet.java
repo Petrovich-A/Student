@@ -16,7 +16,7 @@ import java.util.List;
 import static by.petrovich.student.controller.RequestAttributeNames.STUDENTS;
 
 
-@WebServlet("/goToMainPage")
+@WebServlet("/go-to-main-page")
 public class GoToMainPageServlet extends HttpServlet {
     private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 

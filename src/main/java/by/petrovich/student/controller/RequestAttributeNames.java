@@ -1,6 +1,7 @@
 package by.petrovich.student.controller;
 
 public class RequestAttributeNames {
+    public static final String ACTION = "action";
     public static final String STUDENT_ID = "studentId";
     public static final String STUDENT_LAST_NAME = "studentLastName";
     public static final String STUDENT_FIRST_NAME = "studentFirstName";

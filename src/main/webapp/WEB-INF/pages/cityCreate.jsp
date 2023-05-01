@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -24,11 +24,12 @@
     <div>
         <h2>Create city: </h2>
         <br>
-        <form action="cityCreate" method="POST">
+        <form action="city-controller" method="post">
             <div class="form">
                 <li>
-                    <label>CITY NAME:</label>
+                    <label>NAME:</label>
                     <input type="text"
+                           placeholder="insert city name"
                            name="cityName"
                            pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
                            title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may contain
@@ -37,7 +38,7 @@
                 </li>
             </div>
             <div>
-                <button class="button" type="submit">Submit</button>
+                <button class="button" type="submit" name="action" value="create">Submit</button>
             </div>
         </form>
     </div>

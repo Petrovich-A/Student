@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -24,7 +24,7 @@
     <div>
         <h2>Cities list:</h2>
         <br>
-        <form action="cityCrudServlet" method="POST">
+        <form action="city-controller" method="post">
             <c:choose>
                 <c:when
                         test="${cities.size() == 0 || cities.size() == null}">
@@ -56,12 +56,12 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            <button class="button" type="submit" name="action" value="readById">Read</button>
-            <button class="button" type="submit" name="action" value="goToUpdateCityPage">Update</button>
-            <button class="button" type="submit" name="action" value="deleteById">Delete</button>
+            <button class="button" type="submit" name="action" value="read">Read</button>
+            <button class="button" type="submit" name="action" value="go-to-update-page">Update</button>
+            <button class="button" type="submit" name="action" value="delete">Delete</button>
         </form>
-        <form action="goToCreateCityPage" method="POST">
-            <button class="button" type="submit">Create</button>
+        <form action="city-controller" method="post">
+            <button class="button" type="submit" name="action" value="go-to-create-page">Create</button>
         </form>
     </div>
 </main>

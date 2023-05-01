@@ -27,8 +27,6 @@ import static by.petrovich.student.controller.RequestAttributeNames.STUDENT;
 import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_FIRST_NAME;
 import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
 import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_LAST_NAME;
-import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_STUDENT_FIRST_NAME;
-import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_STUDENT_LAST_NAME;
 
 @WebServlet("/student-controller")
 public class StudentController extends HttpServlet {
@@ -125,21 +123,25 @@ public class StudentController extends HttpServlet {
     }
 
     private StudentDto buildStudentDtoForCreate(HttpServletRequest request) {
-        String firstName = request.getParameter(STUDENT_FIRST_NAME);
-        String lastName = request.getParameter(STUDENT_LAST_NAME);
-        return new StudentDto(firstName, lastName, buildCityDto(request));
+        return StudentDto.builder()
+                .studentFirstName(request.getParameter(STUDENT_FIRST_NAME))
+                .studentLastName(request.getParameter(STUDENT_LAST_NAME))
+                .cityDto(buildCityDto(request))
+                .build();
     }
 
     private StudentDto buildStudentDtoForUpdate(HttpServletRequest request) {
-        int studentId = Integer.parseInt(request.getParameter(STUDENT_ID));
-        String firstName = request.getParameter(UPDATED_STUDENT_FIRST_NAME);
-        String lastName = request.getParameter(UPDATED_STUDENT_LAST_NAME);
-        return new StudentDto(studentId, firstName, lastName, buildCityDto(request));
+        return StudentDto.builder()
+                .studentId(Integer.parseInt(request.getParameter(STUDENT_ID)))
+                .studentFirstName(request.getParameter(STUDENT_FIRST_NAME))
+                .studentLastName(request.getParameter(STUDENT_LAST_NAME))
+                .cityDto(buildCityDto(request))
+                .build();
     }
 
     private CityDto buildCityDto(HttpServletRequest request) {
-        CityDto cityDto = new CityDto();
-        cityDto.setId(Integer.parseInt(request.getParameter(CITY_ID)));
-        return cityDto;
+        return CityDto.builder()
+                .id(Integer.parseInt(request.getParameter(CITY_ID)))
+                .build();
     }
 }

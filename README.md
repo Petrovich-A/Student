@@ -67,6 +67,7 @@ the primary task and the secondary task.
     <li><a>Apache Tomcat 9.0.73 </a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>PostgreSQL 15.1</a></li>
+    <li><a>Project Lombok 1.18.24</a></li>
   </ul>
 </details>
 
@@ -115,8 +116,9 @@ FOREIGN KEY (city_id) REFERENCES cities (city_id);
 
 ## :compass: Have to fix:
 
+* [x] to add the lombok
 * [ ] to add an error page
-* [ ] to checking is entity exists
+* [ ] to add checking is entity exists
 * [ ] opportunity to delete city which associated with student
 
 ## :handshake: Contact

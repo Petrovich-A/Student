@@ -89,10 +89,9 @@ public class CityDaoImpl implements CityDao {
     }
 
     private City buildCity(ResultSet resultSet) throws SQLException {
-        City city = new City();
-        city.setId(resultSet.getInt(CITY_ID));
-        city.setName(resultSet.getString(CITY_NAME));
-        return city;
+        return City.builder()
+                .id(resultSet.getInt(CITY_ID))
+                .name(resultSet.getString(CITY_NAME))
+                .build();
     }
-
 }

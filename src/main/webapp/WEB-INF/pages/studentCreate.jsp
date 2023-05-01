@@ -21,46 +21,44 @@
 </nav>
 <body>
 <main>
-    <body>
     <h2>Create student: </h2>
     <br>
-    <form action="student-controller" method="post">
-        <div class="form">
-            <li>
-                <label>FIRST NAME:</label>
-                <input type="text"
-                       placeholder="insert student first name"
-                       name="studentFirstName"
-                       pattern="[a-zA-Zа-яА-Я]{2,30}"
-                       title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
+    <div class="container">
+        <form action="student-controller" method="post">
+            <div class="form">
+                <li>
+                    <label>FIRST NAME:</label>
+                    <input type="text"
+                           placeholder="insert student first name"
+                           name="studentFirstName"
+                           pattern="[a-zA-Zа-яА-Я]{2,30}"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
                         is from 2 to 30 characters."
-                       required/>
-            </li>
-            <li>
-                <label>LAST NAME:</label>
-                <input type="text"
-                       placeholder="insert student last name"
-                       name="studentLastName"
-                       pattern="[a-zA-Zа-яА-Я]{2,30}"
-                       title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
+                           required/>
+                </li>
+                <li>
+                    <label>LAST NAME:</label>
+                    <input type="text"
+                           placeholder="insert student last name"
+                           name="studentLastName"
+                           pattern="[a-zA-Zа-яА-Я]{2,30}"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
                         is from 2 to 30 characters."
-                       required/>
-            </li>
-            <li>
-                <label>CITY:</label>
-                <select name='cityId'  required>
-                    <c:forEach items="${cities}" var="city">
-                        <option value="${city.getId()}">${city.getName()}
-                        </option>
-                    </c:forEach>
-                </select>
-            </li>
-        </div>
-        <div>
+                           required/>
+                </li>
+                <li>
+                    <label>CITY:</label>
+                    <select name='cityId' required>
+                        <c:forEach items="${cities}" var="city">
+                            <option value="${city.getId()}">${city.getName()}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </li>
+            </div>
             <button class="button" type="submit" name="action" value="create">Submit</button>
-        </div>
-    </form>
-    </body>
+        </form>
+    </div>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

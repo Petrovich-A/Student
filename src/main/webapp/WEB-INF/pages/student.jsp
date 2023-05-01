@@ -21,45 +21,42 @@
 </nav>
 <body>
 <main>
-    <div>
-        <h2>Students list:</h2>
-        <br>
+    <h2>Students list:</h2>
+    <br>
+    <div class="container">
         <form action="student-controller" method="post">
             <c:choose>
-                <c:when
-                        test="${students.size() == 0 || students.size() == null}">
+                <c:when test="${students.size() == 0 || students.size() == null}">
                     <p>
                         <c:out value="No students"/>
                     </p>
                     <hr>
                 </c:when>
                 <c:otherwise>
-                    <div class="container">
-                        <table>
-                            <thead>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>FIRST NAME</th>
+                            <th>LAST NAME</th>
+                            <th>CITY</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="student" items="${students}">
                             <tr>
-                                <th></th>
-                                <th>FIRST NAME</th>
-                                <th>LAST NAME</th>
-                                <th>CITY</th>
+                                <td>
+                                    <input type="radio" name="studentId" value="${student.getId()}"
+                                           required="required"></td>
+                                <td>${student.getFirstName()}</td>
+                                <td>${student.getLastName()}</td>
+                                <td>${student.getCity().getName()}</td>
+                                <td><input type="hidden" name="cityId" value="${student.getCity().getId()}">
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="student" items="${students}">
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="studentId" value="${student.getId()}"
-                                               required="required"></td>
-                                    <td>${student.getFirstName()}</td>
-                                    <td>${student.getLastName()}</td>
-                                    <td>${student.getCity().getName()}</td>
-                                    <td><input type="hidden" name="cityId" value="${student.getCity().getId()}">
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:otherwise>
             </c:choose>
             <button class="button" type="submit" name="action" value="read">Read</button>

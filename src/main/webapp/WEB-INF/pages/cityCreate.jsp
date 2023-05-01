@@ -19,11 +19,11 @@
         </div>
     </ul>
 </nav>
+<body>
 <main>
-    <body>
-    <div>
-        <h2>Create city: </h2>
-        <br>
+    <h2>Create city: </h2>
+    <br>
+    <div class="container">
         <form action="city-controller" method="post">
             <div class="form">
                 <li>
@@ -37,12 +37,9 @@
                            required/>
                 </li>
             </div>
-            <div>
-                <button class="button" type="submit" name="action" value="create">Submit</button>
-            </div>
+            <button class="button" type="submit" name="action" value="create">Submit</button>
         </form>
     </div>
-    </body>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

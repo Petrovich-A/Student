@@ -21,39 +21,36 @@
 </nav>
 <body>
 <main>
-    <div>
-        <h2>Cities list:</h2>
-        <br>
+    <h2>Cities list:</h2>
+    <br>
+    <div class="container">
         <form action="city-controller" method="post">
             <c:choose>
-                <c:when
-                        test="${cities.size() == 0 || cities.size() == null}">
+                <c:when test="${cities.size() == 0 || cities.size() == null}">
                     <p>
                         <c:out value="No cities"/>
                     </p>
                     <hr>
                 </c:when>
                 <c:otherwise>
-                    <div class="container">
-                        <table>
-                            <thead>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>CITY NAME</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="city" items="${cities}">
                             <tr>
-                                <th></th>
-                                <th>CITY NAME</th>
+                                <td><input type=radio name="cityId" value="${city.getId()}"
+                                           required="required">
+                                </td>
+                                <td>${city.getName()}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="city" items="${cities}">
-                                <tr>
-                                    <td><input type=radio name="cityId" value="${city.getId()}"
-                                               required="required">
-                                    </td>
-                                    <td>${city.getName()}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:otherwise>
             </c:choose>
             <button class="button" type="submit" name="action" value="read">Read</button>

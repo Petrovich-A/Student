@@ -22,18 +22,10 @@ public class GoToStudentPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Student> students = STUDENT_DAO.receiveAll();
         request.setAttribute(STUDENTS, students);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/student.jsp");
         requestDispatcher.forward(request, response);
     }
+
 }

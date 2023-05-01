@@ -77,9 +77,9 @@ public class CityController extends HttpServlet {
 
     private void goToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(CITY_ID));
-        City city1 = CITY_SERVICE.readById(id);
+        City city = CITY_SERVICE.readById(id);
         request.setAttribute(CITY_ID, id);
-        request.setAttribute(CITY_NAME, city1.getName());
+        request.setAttribute(CITY_NAME, city.getName());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityUpdate.jsp");
         requestDispatcher.forward(request, response);
     }

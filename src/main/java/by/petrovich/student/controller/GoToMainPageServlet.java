@@ -15,25 +15,16 @@ import java.util.List;
 
 import static by.petrovich.student.controller.RequestAttributeNames.STUDENTS;
 
-
 @WebServlet("/go-to-main-page")
 public class GoToMainPageServlet extends HttpServlet {
     private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Student> students = STUDENT_DAO.receiveAll();
         request.setAttribute(STUDENTS, students);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/main.jsp");
         requestDispatcher.forward(request, response);
     }
+
 }

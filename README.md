@@ -94,14 +94,15 @@ to populate the database tables.
 <!-- Database struct -->
 ### :key: Database structure
 
-cities:
+**1:M -> city:students:**
+
 ```SQL
 city_id SERIAL,
 name    text NOT NULL,
 PRIMARY KEY (city_id),
 UNIQUE (name);
 ```
-students:
+
 ```SQL
 student_id SERIAL,
 first_name VARCHAR(40) NOT NULL,

@@ -119,8 +119,7 @@ input {
 }
 
 button {
-    display: inline-block;
-    float: inside;
+    float: left;
     width: 80px;
     height: 20px;
     border-radius: 8px;

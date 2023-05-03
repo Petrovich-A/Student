@@ -24,7 +24,7 @@
     <h2>Create city: </h2>
     <br>
     <div class="container">
-        <form action="city-controller" method="post">
+        <form action="city-controller" method="POST">
             <div class="form">
                 <li>
                     <label>NAME:</label>

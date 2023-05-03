@@ -34,7 +34,7 @@
         </c:when>
         <c:otherwise>
         <div class="container">
-            <form action="student-controller" method="post">
+            <form action="student-controller" method="POST">
                 <div class="form">
                     <li>
                         <input type="hidden" value="${student.getId()}" name="studentId"/>

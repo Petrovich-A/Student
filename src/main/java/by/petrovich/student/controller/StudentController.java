@@ -90,21 +90,18 @@ public class StudentController extends HttpServlet {
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         STUDENT_SERVICE.updateById(buildStudentDtoForUpdate(request));
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/go-to-student-page");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
     }
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         STUDENT_SERVICE.create(buildStudentDtoForCreate(request));
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/go-to-student-page");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(STUDENT_ID));
         STUDENT_SERVICE.deleteById(id);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/go-to-student-page");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
     }
 
     private void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

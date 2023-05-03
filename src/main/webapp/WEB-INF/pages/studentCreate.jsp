@@ -24,7 +24,7 @@
     <h2>Create student: </h2>
     <br>
     <div class="container">
-        <form action="student-controller" method="post">
+        <form action="student-controller" method="POST">
             <div class="form">
                 <li>
                     <label>FIRST NAME:</label>

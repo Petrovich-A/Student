@@ -69,8 +69,7 @@ public class CityController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CityDto cityDto = buildCityDto(request);
         CITY_SERVICE.updateById(cityDto);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/go-to-city-page");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
     }
 
     private void goToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,22 +81,18 @@ public class CityController extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter(CITY_NAME);
         CityDto cityDto = new CityDto();
         cityDto.setName(name);
         CITY_SERVICE.create(cityDto);
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = request.getRequestDispatcher("/go-to-city-page");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(CITY_ID));
         CITY_SERVICE.deleteById(id);
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = request.getRequestDispatcher("/go-to-city-page");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
     }
 
     private void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

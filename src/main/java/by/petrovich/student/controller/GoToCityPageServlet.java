@@ -15,7 +15,6 @@ import java.util.List;
 
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITIES;
 
-
 @WebServlet("/go-to-city-page")
 public class GoToCityPageServlet extends HttpServlet {
     private final CityService CITY_SERVICE = new CityServiceImpl();

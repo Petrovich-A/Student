@@ -24,7 +24,7 @@
     <h2>Cities list:</h2>
     <br>
     <div class="container">
-        <form action="city-controller" method="post">
+        <form action="city-controller" method="POST">
             <c:choose>
                 <c:when test="${cities.size() == 0 || cities.size() == null}">
                     <p>

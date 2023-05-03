@@ -24,7 +24,7 @@
     <h2>Students list:</h2>
     <br>
     <div class="container">
-        <form action="student-controller" method="post">
+        <form action="student-controller" method="POST">
             <c:choose>
                 <c:when test="${students.size() == 0 || students.size() == null}">
                     <p>

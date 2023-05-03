@@ -21,12 +21,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
-import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
-import static by.petrovich.student.controller.RequestAttributeNames.STUDENT;
-import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_FIRST_NAME;
-import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_ID;
-import static by.petrovich.student.controller.RequestAttributeNames.STUDENT_LAST_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.ACTION;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITIES;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_ID;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENT;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENT_FIRST_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENT_ID;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENT_LAST_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_STUDENT_FIRST_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_STUDENT_LAST_NAME;
 
 @WebServlet("/student-controller")
 public class StudentController extends HttpServlet {
@@ -34,20 +37,18 @@ public class StudentController extends HttpServlet {
     private final CityService CITY_SERVICE = new CityServiceImpl();
     private final static Logger LOGGER = LogManager.getLogger();
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        selectAction(request, response);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        selectAction(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        selectAction(request, response);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        selectAction(req, resp);
     }
 
     private void selectAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = receiveAction(request);
-        switch (action) {
+        switch (receiveAction(request)) {
             case "read":
                 read(request, response);
                 break;
@@ -115,7 +116,7 @@ public class StudentController extends HttpServlet {
     }
 
     private String receiveAction(HttpServletRequest request) {
-        String action = request.getParameter("action");
+        String action = request.getParameter(ACTION);
         if (action.equals(null)) {
             LOGGER.log(Level.ERROR, "StudentId is null");
         }
@@ -133,8 +134,8 @@ public class StudentController extends HttpServlet {
     private StudentDto buildStudentDtoForUpdate(HttpServletRequest request) {
         return StudentDto.builder()
                 .studentId(Integer.parseInt(request.getParameter(STUDENT_ID)))
-                .studentFirstName(request.getParameter(STUDENT_FIRST_NAME))
-                .studentLastName(request.getParameter(STUDENT_LAST_NAME))
+                .studentFirstName(request.getParameter(UPDATED_STUDENT_FIRST_NAME))
+                .studentLastName(request.getParameter(UPDATED_STUDENT_LAST_NAME))
                 .cityDto(buildCityDto(request))
                 .build();
     }

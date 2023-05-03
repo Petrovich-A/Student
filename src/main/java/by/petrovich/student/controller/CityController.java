@@ -16,31 +16,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.petrovich.student.controller.RequestAttributeNames.CITY;
-import static by.petrovich.student.controller.RequestAttributeNames.CITY_ID;
-import static by.petrovich.student.controller.RequestAttributeNames.CITY_NAME;
-import static by.petrovich.student.controller.RequestAttributeNames.UPDATED_CITY_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.ACTION;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_ID;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_NAME;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_CITY_NAME;
 
 @WebServlet("/city-controller")
 public class CityController extends HttpServlet {
+    private final CityService CITY_SERVICE = new CityServiceImpl();
     private final static Logger LOGGER = LogManager.getLogger();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        selectAction(request, response);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        selectAction(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
-        selectAction(request, response);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        selectAction(req, resp);
     }
 
-    private final CityService CITY_SERVICE = new CityServiceImpl();
-
     private void selectAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = receiveAction(request);
-        switch (action) {
+        switch (receiveAction(request)) {
             case "read":
                 read(request, response);
                 break;
@@ -111,7 +109,7 @@ public class CityController extends HttpServlet {
     }
 
     private String receiveAction(HttpServletRequest request) {
-        String action = request.getParameter("action");
+        String action = request.getParameter(ACTION);
         if (action.equals(null)) {
             LOGGER.log(Level.ERROR, "StudentId is null");
         }

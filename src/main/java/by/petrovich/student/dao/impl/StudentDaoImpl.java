@@ -26,12 +26,11 @@ public class StudentDaoImpl implements StudentDao {
     private final String DELETE_BY_ID = "DELETE FROM students WHERE student_id = ?;";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
     private final String UPDATE = "UPDATE students SET first_name = ?, last_name = ?,  city_id = ? WHERE student_id = ?;";
-    private final DatabaseConnector databaseConnector = new DatabaseConnector();
 
     @Override
     public List<Student> receiveAll() {
         List<Student> students = new ArrayList<>();
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
@@ -46,7 +45,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student readById(int id) {
         Student student = null;
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -61,7 +60,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void deleteById(int id) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -72,7 +71,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void create(Student student) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
             preparedStatement.setString(1, student.getFirstName());
             preparedStatement.setString(2, student.getLastName());
@@ -85,7 +84,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void updateById(Student student) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
             preparedStatement.setString(1, student.getFirstName());
             preparedStatement.setString(2, student.getLastName());

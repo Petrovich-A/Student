@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static by.petrovich.student.controller.RequestAttributeNames.CITIES;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITIES;
 
 
 @WebServlet("/go-to-city-page")

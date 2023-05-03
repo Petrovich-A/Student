@@ -1,16 +1,17 @@
 package by.petrovich.student.utils;
 
+import lombok.experimental.UtilityClass;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+@UtilityClass
 public class DatabaseConnector {
     private Connection connection;
-    private static final PropertyLoader PROPERTY_LOADER = new PropertyLoader();
-    private static final String JDBC_DRIVER_NAME = PROPERTY_LOADER.receivePropertyValue("jdbc.driver.name");
-    private static final String CONNECTION_URL = PROPERTY_LOADER.receivePropertyValue("connection.url");
-    private static final String USER_NAME = PROPERTY_LOADER.receivePropertyValue("user.name");
-    private static final String PASSWORD = PROPERTY_LOADER.receivePropertyValue("password");
+    private final String JDBC_DRIVER_NAME = PropertyLoader.receivePropertyValue("jdbc.driver.name");
+    private final String CONNECTION_URL = PropertyLoader.receivePropertyValue("connection.url");
+    private final String USER_NAME = PropertyLoader.receivePropertyValue("user.name");
+    private final String PASSWORD = PropertyLoader.receivePropertyValue("password");
 
     public Connection receiveConnection() {
         if (connection == null) {

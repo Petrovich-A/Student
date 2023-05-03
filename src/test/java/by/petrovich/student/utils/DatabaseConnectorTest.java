@@ -8,12 +8,11 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DatabaseConnectorTest {
-    DatabaseConnector databaseConnector = new DatabaseConnector();
 
     @Test
     void receiveConnection()  {
         boolean isAvailable;
-        try (Connection connection = databaseConnector.receiveConnection()) {
+        try (Connection connection = DatabaseConnector.receiveConnection()) {
             isAvailable = connection.isValid(10000);
         } catch (SQLException e) {
             throw new RuntimeException(e);

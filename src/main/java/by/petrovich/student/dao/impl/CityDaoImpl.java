@@ -21,12 +21,10 @@ public class CityDaoImpl implements CityDao {
     private final String DELETE_BY_ID = "DELETE FROM cities WHERE city_id = ?";
     private final String UPDATE = "UPDATE cities SET name = ? WHERE city_id = ?";
 
-    private final DatabaseConnector databaseConnector = new DatabaseConnector();
-
     @Override
     public List<City> receiveAll() {
         List<City> cities = new ArrayList<>();
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
@@ -41,7 +39,7 @@ public class CityDaoImpl implements CityDao {
     @Override
     public City readById(int id) {
         City city = new City();
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -56,7 +54,7 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public void deleteById(int id) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -67,7 +65,7 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public void updateById(City city) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
             preparedStatement.setString(1, city.getName());
             preparedStatement.setInt(2, city.getId());
@@ -79,7 +77,7 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public void create(City city) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
             preparedStatement.setString(1, city.getName());
             preparedStatement.executeUpdate();

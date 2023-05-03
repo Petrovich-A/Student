@@ -1,5 +1,6 @@
 package by.petrovich.student.utils;
 
+import lombok.experimental.UtilityClass;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,10 +10,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+@UtilityClass
 public class PropertyLoader {
-    private final static String PROPERTY_PATH = "properties/application.properties";
-    private final static Logger LOGGER = LogManager.getLogger();
-    private final static Properties PROPERTIES = new Properties();
+    private final String PROPERTY_PATH = "properties/application.properties";
+    private final Logger LOGGER = LogManager.getLogger();
+    private final Properties PROPERTIES = new Properties();
 
     public String receivePropertyValue(String propertyKey) {
         readProperties();
@@ -20,7 +22,7 @@ public class PropertyLoader {
     }
 
     private void readProperties() {
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTY_PATH)) {
+        try (InputStream inputStream = PropertyLoader.class.getClassLoader().getResourceAsStream(PROPERTY_PATH)) {
             if (inputStream != null) {
                 PROPERTIES.load(inputStream);
             } else {

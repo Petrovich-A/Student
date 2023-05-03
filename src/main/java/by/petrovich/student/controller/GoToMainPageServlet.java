@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static by.petrovich.student.controller.RequestAttributeNames.STUDENTS;
+import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENTS;
 
 @WebServlet("/go-to-main-page")
 public class GoToMainPageServlet extends HttpServlet {

@@ -13,33 +13,33 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
+<body>
 <main>
-    <body>
-    <div>
-        <h2>Create city: </h2>
-        <br>
-        <form action="cityCreate" method="POST">
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>CITY NAME:</td>
-                        <td><input type="text" name="cityName" pattern="[a-z,A-Z,а-я,А-Я,\s]{2,30}"
-                                   title="Input city name" required/></td>
-                    </tr>
-                </table>
+    <h2>Create city: </h2>
+    <br>
+    <div class="container">
+        <form action="city-controller" method="POST">
+            <div class="form">
+                <li>
+                    <label>NAME:</label>
+                    <input type="text"
+                           placeholder="insert city name"
+                           name="cityName"
+                           pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may contain
+                       only one dash or space symbols. The total length of string is from 2 to 25 characters."
+                           required/>
+                </li>
             </div>
-            <div>
-                <button class="button" type="submit">Submit</button>
-            </div>
+            <button class="button" type="submit" name="action" value="create">Submit</button>
         </form>
     </div>
-    </body>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

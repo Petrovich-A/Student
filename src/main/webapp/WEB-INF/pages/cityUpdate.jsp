@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -33,20 +33,25 @@
         </c:when>
         <c:otherwise>
         <div class="container">
-            <form action="cityUpdateById" method="POST">
-                <table>
-                    <tr>
-                        <td>CITY NAME:</td>
-                        <td><label><input type="text" value="${cityName}" name="updatedCityName" required
-                                   pattern="[a-z,A-Z,а-я,А-Я,\s]{2,30}"
-                                   title="Input city name"/></label></td>
-                        <input type="hidden" value="${cityId}" name="cityId"/>
-                    </tr>
-                </table>
+            <form action="city-controller" method="POST">
+                <div class="form">
+                    <li>
+                        <label>NAME:</label>
+                        <input type="text"
+                               placeholder="insert new city name"
+                               name="updatedCityName"
+                               value="${cityName}"
+                               pattern="^[a-zA-Zа-яА-Я]{1,15}[-|\s]?[a-zA-Zа-яА-Я]{1,15}$"
+                               title="Must contain latin and cyrillic uppercase or lowercase letters. Optionally may contain
+                               only one dash or space symbols. The total length of string is from 2 to 25 characters."
+                               required/>
+                    </li>
+                    <input type="hidden" value="${cityId}" name="cityId"/>
+                </div>
                 </c:otherwise>
                 </c:choose>
                 <div>
-                    <button class="button" type="submit">Submit</button>
+                    <button class="button" type="submit" name="action" value="update">Submit</button>
                 </div>
             </form>
         </div>

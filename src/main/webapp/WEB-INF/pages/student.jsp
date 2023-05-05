@@ -13,61 +13,58 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
 <body>
 <main>
-    <div>
-        <h2>Students list:</h2>
-        <br>
-        <form action="studentCrudServlet" method="POST">
+    <h2>Students list:</h2>
+    <br>
+    <div class="container">
+        <form action="student-controller" method="POST">
             <c:choose>
-                <c:when
-                        test="${students.size() == 0 || students.size() == null}">
+                <c:when test="${students.size() == 0 || students.size() == null}">
                     <p>
                         <c:out value="No students"/>
                     </p>
                     <hr>
                 </c:when>
                 <c:otherwise>
-                    <div class="container">
-                        <table>
-                            <thead>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>FIRST NAME</th>
+                            <th>LAST NAME</th>
+                            <th>CITY</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="student" items="${students}">
                             <tr>
-                                <th></th>
-                                <th>FIRST NAME</th>
-                                <th>LAST NAME</th>
-                                <th>CITY</th>
+                                <td>
+                                    <input type="radio" name="studentId" value="${student.getId()}"
+                                           required="required"></td>
+                                <td>${student.getFirstName()}</td>
+                                <td>${student.getLastName()}</td>
+                                <td>${student.getCity().getName()}</td>
+                                <td><input type="hidden" name="cityId" value="${student.getCity().getId()}">
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="student" items="${students}">
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="studentId" value="${student.getId()}"
-                                               required="required"></td>
-                                    <td>${student.getFirstName()}</td>
-                                    <td>${student.getLastName()}</td>
-                                    <td>${student.getCity().getName()}</td>
-                                    <td><input type="hidden" name="cityId" value="${student.getCity().getId()}">
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:otherwise>
             </c:choose>
-            <button class="button" type="submit" name="action" value="readById">Read</button>
-            <button class="button" type="submit" name="action" value="goToUpdateStudentPage">Update</button>
-            <button class="button" type="submit" name="action" value="deleteById">Delete</button>
+            <button class="button" type="submit" name="action" value="read">Read</button>
+            <button class="button" type="submit" name="action" value="go-to-update-page">Update</button>
+            <button class="button" type="submit" name="action" value="delete">Delete</button>
         </form>
-        <form action="goToCreateStudentPage" method="POST">
-            <button class="button" type="submit">Create</button>
+        <form action="student-controller" method="POST">
+            <button class="button" type="submit" name="action" value="go-to-create-page">Create</button>
         </form>
     </div>
 </main>

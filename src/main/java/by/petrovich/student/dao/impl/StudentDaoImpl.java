@@ -1,6 +1,5 @@
 package by.petrovich.student.dao.impl;
 
-import by.petrovich.student.dao.CityDao;
 import by.petrovich.student.dao.StudentDao;
 import by.petrovich.student.model.City;
 import by.petrovich.student.model.Student;
@@ -20,21 +19,19 @@ import static by.petrovich.student.dao.FieldName.STUDENT_ID;
 import static by.petrovich.student.dao.FieldName.STUDENT_LAST_NAME;
 
 public class StudentDaoImpl implements StudentDao {
-    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name ";
-    private final String JOIN_CITY = "JOIN cities USING (city_id) ";
-    private final String DELETE = "DELETE ";
+    private final String SELECT_ALL = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities " +
+            "USING(city_id) ORDER BY student_id;";
+    private final String READ_BY_ID = "SELECT student_id, first_name, last_name, city_id, name FROM students JOIN cities" +
+            " USING (city_id) WHERE student_id = ?;";
+    private final String DELETE_BY_ID = "DELETE FROM students WHERE student_id = ?;";
     private final String INSERT = "INSERT INTO students (first_name, last_name, city_id) VALUES (?, ?, ?)";
-    private final String FROM = "FROM students ";
-    private final String UPDATE = "UPDATE students SET first_name = ?, last_name = ?,  city_id = ? ";
-    private final String WHERE_ID = "WHERE student_id = ?";
-    private final DatabaseConnector databaseConnector = new DatabaseConnector();
-    private final CityDao cityDao = new CityDaoImpl();
+    private final String UPDATE = "UPDATE students SET first_name = ?, last_name = ?,  city_id = ? WHERE student_id = ?;";
 
     @Override
     public List<Student> receiveAll() {
         List<Student> students = new ArrayList<>();
-        try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + JOIN_CITY);
+        try (Connection connection = DatabaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 students.add(buildStudent(resultSet));
@@ -48,8 +45,8 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student readById(int id) {
         Student student = null;
-        try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL + FROM + JOIN_CITY + WHERE_ID)) {
+        try (Connection connection = DatabaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -63,8 +60,8 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void deleteById(int id) {
-        try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE + FROM + WHERE_ID)) {
+        try (Connection connection = DatabaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -74,7 +71,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void create(Student student) {
-        try (Connection connection = databaseConnector.receiveConnection();
+        try (Connection connection = DatabaseConnector.receiveConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT)) {
             preparedStatement.setString(1, student.getFirstName());
             preparedStatement.setString(2, student.getLastName());
@@ -87,8 +84,8 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void updateById(Student student) {
-        try (Connection connection = databaseConnector.receiveConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE + WHERE_ID)) {
+        try (Connection connection = DatabaseConnector.receiveConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
             preparedStatement.setString(1, student.getFirstName());
             preparedStatement.setString(2, student.getLastName());
             preparedStatement.setInt(3, student.getCity().getId());
@@ -100,18 +97,18 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     private Student buildStudent(ResultSet resultSet) throws SQLException {
-        Student student = new Student();
-        student.setId(resultSet.getInt(STUDENT_ID));
-        student.setFirstName(resultSet.getString(STUDENT_FIRST_NAME));
-        student.setLastName(resultSet.getString(STUDENT_LAST_NAME));
-        student.setCity(buildCity(resultSet));
-        return student;
+        return Student.builder()
+                .id(resultSet.getInt(STUDENT_ID))
+                .firstName(resultSet.getString(STUDENT_FIRST_NAME))
+                .lastName(resultSet.getString(STUDENT_LAST_NAME))
+                .city(buildCity(resultSet))
+                .build();
     }
 
     private City buildCity(ResultSet resultSet) throws SQLException {
-        City city = new City();
-        city.setId(resultSet.getInt(CITY_ID));
-        city.setName(resultSet.getString(CITY_NAME));
-        return city;
+        return City.builder()
+                .id(resultSet.getInt(CITY_ID))
+                .name(resultSet.getString(CITY_NAME))
+                .build();
     }
 }

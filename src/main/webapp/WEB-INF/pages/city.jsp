@@ -13,55 +13,52 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
 <body>
 <main>
-    <div>
-        <h2>Cities list:</h2>
-        <br>
-        <form action="cityCrudServlet" method="POST">
+    <h2>Cities list:</h2>
+    <br>
+    <div class="container">
+        <form action="city-controller" method="POST">
             <c:choose>
-                <c:when
-                        test="${cities.size() == 0 || cities.size() == null}">
+                <c:when test="${cities.size() == 0 || cities.size() == null}">
                     <p>
                         <c:out value="No cities"/>
                     </p>
                     <hr>
                 </c:when>
                 <c:otherwise>
-                    <div class="container">
-                        <table>
-                            <thead>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>CITY NAME</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="city" items="${cities}">
                             <tr>
-                                <th></th>
-                                <th>CITY NAME</th>
+                                <td><input type=radio name="cityId" value="${city.getId()}"
+                                           required="required">
+                                </td>
+                                <td>${city.getName()}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="city" items="${cities}">
-                                <tr>
-                                    <td><input type=radio name="cityId" value="${city.getId()}"
-                                               required="required">
-                                    </td>
-                                    <td>${city.getName()}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:otherwise>
             </c:choose>
-            <button class="button" type="submit" name="action" value="readById">Read</button>
-            <button class="button" type="submit" name="action" value="goToUpdateCityPage">Update</button>
-            <button class="button" type="submit" name="action" value="deleteById">Delete</button>
+            <button class="button" type="submit" name="action" value="read">Read</button>
+            <button class="button" type="submit" name="action" value="go-to-update-page">Update</button>
+            <button class="button" type="submit" name="action" value="delete">Delete</button>
         </form>
-        <form action="goToCreateCityPage" method="POST">
-            <button class="button" type="submit">Create</button>
+        <form action="city-controller" method="post">
+            <button class="button" type="submit" name="action" value="go-to-create-page">Create</button>
         </form>
     </div>
 </main>

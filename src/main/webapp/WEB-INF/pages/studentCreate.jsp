@@ -13,49 +13,52 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="goToMainPage">MAIN</a></li>
-            <li><a href="goToStudentPage">STUDENTS</a></li>
-            <li><a href="goToCityPage">CITIES</a></li>
+            <li><a href="go-to-main-page">MAIN</a></li>
+            <li><a href="go-to-student-page">STUDENTS</a></li>
+            <li><a href="go-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
 <body>
 <main>
-    <body>
-    <div>
-        <h2>Create student: </h2>
-        <br>
-        <form action="studentCreate" method="POST">
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>STUDENT FIRST NAME:</td>
-                        <td><input type="text" name="studentFirstName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
-                                   title="Input student first name"/></td>
-                    </tr>
-                    <tr>
-                        <td>STUDENT LAST NAME:</td>
-                        <td><input type="text" name="studentLastName" required pattern="[a-z,A-Z,а-я,А-Я]{2,30}"
-                                   title="Input student last name"/></td>
-                    </tr>
-                    <tr>
-                        <td>CITY:</td>
-                        <td><select name='cityId' required>
-                            <c:forEach items="${cities}" var="city">
-                                <option value="${city.getId()}">${city.getName()}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        </td>
-                    </tr>
-                </table>
+    <h2>Create student: </h2>
+    <br>
+    <div class="container">
+        <form action="student-controller" method="POST">
+            <div class="form">
+                <li>
+                    <label>FIRST NAME:</label>
+                    <input type="text"
+                           placeholder="insert student first name"
+                           name="studentFirstName"
+                           pattern="[a-zA-Zа-яА-Я]{2,30}"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
+                        is from 2 to 30 characters."
+                           required/>
+                </li>
+                <li>
+                    <label>LAST NAME:</label>
+                    <input type="text"
+                           placeholder="insert student last name"
+                           name="studentLastName"
+                           pattern="[a-zA-Zа-яА-Я]{2,30}"
+                           title="Must contain latin and cyrillic uppercase or lowercase letters. The total length of string
+                        is from 2 to 30 characters."
+                           required/>
+                </li>
+                <li>
+                    <label>CITY:</label>
+                    <select name='cityId' required>
+                        <c:forEach items="${cities}" var="city">
+                            <option value="${city.getId()}">${city.getName()}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </li>
             </div>
-            <div>
-                <button class="button" type="submit" name="action" value="create">Submit</button>
-            </div>
+            <button class="button" type="submit" name="action" value="create">Submit</button>
         </form>
     </div>
-    </body>
 </main>
 <footer>
     <p>Author: Alexandr Petrovich

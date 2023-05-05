@@ -24,6 +24,8 @@
     * [Screenshots](#camera-screenshots)
     * [Tech Stack](#space_invader-tech-stack)
     * [Features](#dart-features)
+    * [Run Locally](#running-run-locally)
+    * [Database structure](#key-database-structure)
 - [Have to fix](#compass-have-to-fix)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
@@ -65,6 +67,7 @@ the primary task and the secondary task.
     <li><a>Apache Tomcat 9.0.73 </a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>PostgreSQL 15.1</a></li>
+    <li><a>Project Lombok 1.18.24</a></li>
   </ul>
 </details>
 
@@ -76,18 +79,47 @@ the primary task and the secondary task.
 - CRUD methods for city entity
 - show resulting 1:M relationship table
 
+<!-- Run Locally -->
+### :running: Run Locally
+
 Clone the project
 
 ```bash
   git clone https://github.com/Petrovich-A/Student.git
 ```
 
+Go to the project directory and `run` this [script](https://github.com/Petrovich-A/Student/blob/develop/src/main/resources/scripts/create_and_populate_tables)
+to populate the database tables.
+
+<!-- Database struct -->
+### :key: Database structure
+
+**1:M -> city:students:**
+
+```SQL
+city_id SERIAL,
+name    text NOT NULL,
+PRIMARY KEY (city_id),
+UNIQUE (name);
+```
+
+```SQL
+student_id SERIAL,
+first_name VARCHAR(40) NOT NULL,
+last_name  VARCHAR(40) NOT NULL,
+city_id    int         NOT NULL,
+PRIMARY KEY (student_id),
+FOREIGN KEY (student_id) REFERENCES students (student_id),
+FOREIGN KEY (city_id) REFERENCES cities (city_id);
+```
+
 <!-- Roadmap -->
 
 ## :compass: Have to fix:
 
+* [x] to add the lombok
 * [ ] to add an error page
-* [ ] to checking is entity exists
+* [ ] to add checking is entity exists
 * [ ] opportunity to delete city which associated with student
 
 ## :handshake: Contact

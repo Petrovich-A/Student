@@ -10,7 +10,7 @@ import by.petrovich.student.service.StudentService;
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
-    private static final StudentDao STUDENT_DAO = new StudentDaoImpl();
+    private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     @Override
     public List<Student> receiveAll() {
@@ -38,13 +38,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private Student buildStudent(StudentDto studentDto) {
-        City city = new City();
-        city.setId(studentDto.getCityDto().getId());
-        Student student = new Student();
-        student.setCity(city);
-        student.setId(studentDto.getStudentId());
-        student.setFirstName(studentDto.getStudentFirstName());
-        student.setLastName(studentDto.getStudentLastName());
-        return student;
+        return Student.builder().id(studentDto.getStudentId())
+                .firstName(studentDto.getStudentFirstName())
+                .lastName(studentDto.getStudentLastName())
+                .city(buildCity(studentDto))
+                .build();
+    }
+
+    private City buildCity(StudentDto studentDto) {
+        return City.builder().id(studentDto.getCityDto().getId()).build();
     }
 }

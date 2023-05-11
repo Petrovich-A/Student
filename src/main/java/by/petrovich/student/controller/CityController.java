@@ -4,9 +4,7 @@ import by.petrovich.student.dto.CityDto;
 import by.petrovich.student.model.City;
 import by.petrovich.student.service.CityService;
 import by.petrovich.student.service.impl.CityServiceImpl;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.java.Log;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,16 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.petrovich.student.utils.Constants.ActionNames.CREATE;
+import static by.petrovich.student.utils.Constants.ActionNames.DELETE;
+import static by.petrovich.student.utils.Constants.ActionNames.FORWARD_TO_CREATE_PAGE;
+import static by.petrovich.student.utils.Constants.ActionNames.FORWARD_TO_UPDATE_PAGE;
+import static by.petrovich.student.utils.Constants.ActionNames.READ;
+import static by.petrovich.student.utils.Constants.ActionNames.UPDATE;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.ACTION;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_ID;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_NAME;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_CITY_NAME;
 
-@WebServlet("/city-controller")
+@WebServlet("/city")
+@Log
 public class CityController extends HttpServlet {
     private final CityService CITY_SERVICE = new CityServiceImpl();
-    private final static Logger LOGGER = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,29 +43,29 @@ public class CityController extends HttpServlet {
 
     private void selectAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         switch (receiveAction(request)) {
-            case "read":
+            case READ:
                 read(request, response);
                 break;
-            case "delete":
+            case DELETE:
                 delete(request, response);
                 break;
-            case "create":
+            case CREATE:
                 create(request, response);
                 break;
-            case "update":
+            case UPDATE:
                 update(request, response);
                 break;
-            case "go-to-update-page":
-                goToUpdatePage(request, response);
+            case FORWARD_TO_UPDATE_PAGE:
+                forwardToUpdatePage(request, response);
                 break;
-            case "go-to-create-page":
-                goToCreatePage(request, response);
+            case FORWARD_TO_CREATE_PAGE:
+                forwardToCreatePage(request, response);
                 break;
             default:
         }
     }
 
-    private void goToCreatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void forwardToCreatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/cityCreate.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -69,10 +73,10 @@ public class CityController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CityDto cityDto = buildCityDto(request);
         CITY_SERVICE.updateById(cityDto);
-        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-city-page");
     }
 
-    private void goToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void forwardToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(CITY_ID));
         City city = CITY_SERVICE.readById(id);
         request.setAttribute(CITY_ID, id);
@@ -86,13 +90,13 @@ public class CityController extends HttpServlet {
         CityDto cityDto = new CityDto();
         cityDto.setName(name);
         CITY_SERVICE.create(cityDto);
-        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-city-page");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(CITY_ID));
         CITY_SERVICE.deleteById(id);
-        response.sendRedirect(request.getContextPath() + "/go-to-city-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-city-page");
     }
 
     private void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -106,7 +110,7 @@ public class CityController extends HttpServlet {
     private String receiveAction(HttpServletRequest request) {
         String action = request.getParameter(ACTION);
         if (action.equals(null)) {
-            LOGGER.log(Level.ERROR, "StudentId is null");
+            log.severe("StudentId is null");
         }
         return action;
     }

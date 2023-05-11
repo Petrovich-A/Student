@@ -28,16 +28,18 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void updateById(CityDto cityDto) {
-        City city = new City();
-        city.setId(cityDto.getId());
-        city.setName(cityDto.getName());
+        City city = City.builder()
+                .id(cityDto.getId())
+                .name(cityDto.getName())
+                .build();
         CITY_DAO.updateById(city);
     }
 
     @Override
     public void create(CityDto cityDto) {
-        City city = new City();
-        city.setName(cityDto.getName());
+        City city = City.builder()
+                .name(cityDto.getName())
+                .build();
         CITY_DAO.create(city);
     }
 }

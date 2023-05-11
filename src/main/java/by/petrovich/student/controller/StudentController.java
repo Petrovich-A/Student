@@ -8,9 +8,7 @@ import by.petrovich.student.service.CityService;
 import by.petrovich.student.service.StudentService;
 import by.petrovich.student.service.impl.CityServiceImpl;
 import by.petrovich.student.service.impl.StudentServiceImpl;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.java.Log;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.petrovich.student.utils.Constants.ActionNames.CREATE;
+import static by.petrovich.student.utils.Constants.ActionNames.DELETE;
+import static by.petrovich.student.utils.Constants.ActionNames.FORWARD_TO_CREATE_PAGE;
+import static by.petrovich.student.utils.Constants.ActionNames.FORWARD_TO_UPDATE_PAGE;
+import static by.petrovich.student.utils.Constants.ActionNames.READ;
+import static by.petrovich.student.utils.Constants.ActionNames.UPDATE;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.ACTION;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITIES;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITY_ID;
@@ -31,11 +35,11 @@ import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENT
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_STUDENT_FIRST_NAME;
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.UPDATED_STUDENT_LAST_NAME;
 
-@WebServlet("/student-controller")
+@WebServlet("/student")
+@Log
 public class StudentController extends HttpServlet {
     private final StudentService STUDENT_SERVICE = new StudentServiceImpl();
     private final CityService CITY_SERVICE = new CityServiceImpl();
-    private final static Logger LOGGER = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,36 +53,36 @@ public class StudentController extends HttpServlet {
 
     private void selectAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         switch (receiveAction(request)) {
-            case "read":
+            case READ:
                 read(request, response);
                 break;
-            case "delete":
+            case DELETE:
                 delete(request, response);
                 break;
-            case "create":
+            case CREATE:
                 create(request, response);
                 break;
-            case "update":
+            case UPDATE:
                 update(request, response);
                 break;
-            case "go-to-update-page":
-                goToUpdatePage(request, response);
+            case FORWARD_TO_UPDATE_PAGE:
+                forwardToUpdatePage(request, response);
                 break;
-            case "go-to-create-page":
-                goToCreatePage(request, response);
+            case FORWARD_TO_CREATE_PAGE:
+                forwardToCreatePage(request, response);
                 break;
             default:
         }
     }
 
-    private void goToCreatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void forwardToCreatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/studentCreate.jsp");
         List<City> cities = CITY_SERVICE.receiveAll();
         request.setAttribute(CITIES, cities);
         requestDispatcher.forward(request, response);
     }
 
-    private void goToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void forwardToUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int studentId = Integer.parseInt(request.getParameter(STUDENT_ID));
         Student student = STUDENT_SERVICE.readById(studentId);
         List<City> cities = CITY_SERVICE.receiveAll();
@@ -90,18 +94,18 @@ public class StudentController extends HttpServlet {
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         STUDENT_SERVICE.updateById(buildStudentDtoForUpdate(request));
-        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-student-page");
     }
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         STUDENT_SERVICE.create(buildStudentDtoForCreate(request));
-        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-student-page");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter(STUDENT_ID));
         STUDENT_SERVICE.deleteById(id);
-        response.sendRedirect(request.getContextPath() + "/go-to-student-page");
+        response.sendRedirect(request.getContextPath() + "/redirect-to-student-page");
     }
 
     private void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -115,7 +119,7 @@ public class StudentController extends HttpServlet {
     private String receiveAction(HttpServletRequest request) {
         String action = request.getParameter(ACTION);
         if (action.equals(null)) {
-            LOGGER.log(Level.ERROR, "StudentId is null");
+            log.severe("StudentId is null");
         }
         return action;
     }
@@ -141,5 +145,10 @@ public class StudentController extends HttpServlet {
         return CityDto.builder()
                 .id(Integer.parseInt(request.getParameter(CITY_ID)))
                 .build();
+    }
+
+    @Override
+    public void log(String msg) {
+        super.log(msg);
     }
 }

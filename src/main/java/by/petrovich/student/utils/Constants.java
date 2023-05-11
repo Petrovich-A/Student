@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Constants {
-    public class RequestAttributeNames {
+    public static class RequestAttributeNames {
         public static final String ACTION = "action";
         public static final String STUDENT_ID = "studentId";
         public static final String STUDENT_LAST_NAME = "studentLastName";
@@ -18,5 +18,14 @@ public class Constants {
         public static final String CITIES = "cities";
         public static final String STUDENT = "student";
         public static final String STUDENTS = "students";
+    }
+
+    public static class ActionNames {
+        public static final String READ = "read";
+        public static final String DELETE = "delete";
+        public static final String CREATE = "create";
+        public static final String UPDATE = "update";
+        public static final String FORWARD_TO_UPDATE_PAGE = "forward-to-update-page";
+        public static final String FORWARD_TO_CREATE_PAGE = "forward-to-create-page";
     }
 }

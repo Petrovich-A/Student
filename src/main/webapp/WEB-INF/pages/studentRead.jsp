@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102 </li>
         <div class="items">
-            <li><a href="go-to-main-page">MAIN</a></li>
-            <li><a href="go-to-student-page">STUDENTS</a></li>
-            <li><a href="go-to-city-page">CITIES</a></li>
+            <li><a href="main">MAIN</a></li>
+            <li><a href="redirect-to-student-page">STUDENTS</a></li>
+            <li><a href="redirect-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>

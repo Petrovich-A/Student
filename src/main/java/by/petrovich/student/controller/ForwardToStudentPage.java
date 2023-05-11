@@ -15,15 +15,16 @@ import java.util.List;
 
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.STUDENTS;
 
-@WebServlet("/go-to-main-page")
-public class GoToMainPageServlet extends HttpServlet {
+
+@WebServlet("/redirect-to-student-page")
+public class ForwardToStudentPage extends HttpServlet {
     private final StudentDao STUDENT_DAO = new StudentDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Student> students = STUDENT_DAO.receiveAll();
         request.setAttribute(STUDENTS, students);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/main.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/student.jsp");
         requestDispatcher.forward(request, response);
     }
 

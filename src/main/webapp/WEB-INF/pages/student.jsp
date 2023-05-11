@@ -13,9 +13,9 @@
     <ul>
         <li class="logo"><span>STUDENT</span> APP &#128102</li>
         <div class="items">
-            <li><a href="go-to-main-page">MAIN</a></li>
-            <li><a href="go-to-student-page">STUDENTS</a></li>
-            <li><a href="go-to-city-page">CITIES</a></li>
+            <li><a href="main">MAIN</a></li>
+            <li><a href="redirect-to-student-page">STUDENTS</a></li>
+            <li><a href="redirect-to-city-page">CITIES</a></li>
         </div>
     </ul>
 </nav>
@@ -24,7 +24,7 @@
     <h2>Students list:</h2>
     <br>
     <div class="container">
-        <form action="student-controller" method="POST">
+        <form action="student" method="POST">
             <c:choose>
                 <c:when test="${students.size() == 0 || students.size() == null}">
                     <p>
@@ -60,11 +60,11 @@
                 </c:otherwise>
             </c:choose>
             <button class="button" type="submit" name="action" value="read">Read</button>
-            <button class="button" type="submit" name="action" value="go-to-update-page">Update</button>
+            <button class="button" type="submit" name="action" value="forward-to-update-page">Update</button>
             <button class="button" type="submit" name="action" value="delete">Delete</button>
         </form>
-        <form action="student-controller" method="POST">
-            <button class="button" type="submit" name="action" value="go-to-create-page">Create</button>
+        <form action="student" method="POST">
+            <button class="button" type="submit" name="action" value="forward-to-create-page">Create</button>
         </form>
     </div>
 </main>

@@ -15,8 +15,8 @@ import java.util.List;
 
 import static by.petrovich.student.utils.Constants.RequestAttributeNames.CITIES;
 
-@WebServlet("/go-to-city-page")
-public class GoToCityPageServlet extends HttpServlet {
+@WebServlet("/redirect-to-city-page")
+public class ForwardToCityPage extends HttpServlet {
     private final CityService CITY_SERVICE = new CityServiceImpl();
 
     @Override
